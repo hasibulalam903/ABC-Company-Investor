@@ -1,0 +1,5 @@
+﻿
+Partial Class InvestorManagement
+    Inherits System.Web.UI.Page
+
+End Class

@@ -1,0 +1,242 @@
+﻿<%@ Master Language="VB"
+    AutoEventWireup="false"
+    CodeFile="Site.master.vb"
+    Inherits="Site" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>
+        <asp:ContentPlaceHolder
+            ID="TitleContent"
+            runat="server">
+        </asp:ContentPlaceHolder>
+    </title>
+
+    <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fa;
+        }
+
+        .navbar {
+            background: #212529;
+            padding: 12px 25px;
+        }
+
+        .navbar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .navbar-brand {
+            color: white !important;
+            font-size: 22px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-right: 25px;
+        }
+
+        .nav-link {
+            color: white !important;
+            text-decoration: none;
+            padding: 9px 13px;
+            margin-right: 5px;
+            display: inline-block;
+            border-radius: 5px;
+        }
+
+        .nav-link:hover {
+            background: #343a40;
+        }
+
+        .login-link {
+            background: #0d6efd;
+        }
+
+        .admin-link {
+            color: #ffc107 !important;
+            font-weight: bold;
+        }
+
+        .user-link {
+            color: #8ec5ff !important;
+            font-weight: bold;
+        }
+
+        .logout-link {
+            color: #ff6b6b !important;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<form
+    id="form1"
+    runat="server">
+
+
+    <!-- ==========================================
+         NAVBAR
+         ========================================== -->
+
+    <nav class="navbar">
+
+        <div class="navbar-container">
+
+
+            <!-- BRAND -->
+
+            <asp:HyperLink
+                ID="lnkBrand"
+                runat="server"
+                NavigateUrl="~/Home.aspx"
+                CssClass="navbar-brand">
+
+                ABC Company
+
+            </asp:HyperLink>
+
+
+            <!-- HOME -->
+
+            <asp:HyperLink
+                ID="lnkHome"
+                runat="server"
+                NavigateUrl="~/Home.aspx"
+                CssClass="nav-link">
+
+                Home
+
+            </asp:HyperLink>
+
+
+            <!-- ABOUT -->
+
+            <asp:HyperLink
+                ID="lnkAbout"
+                runat="server"
+                NavigateUrl="~/About.aspx"
+                CssClass="nav-link">
+
+                About Us
+
+            </asp:HyperLink>
+
+
+            <!-- CONTACT -->
+
+            <asp:HyperLink
+                ID="lnkContact"
+                runat="server"
+                NavigateUrl="~/Contact.aspx"
+                CssClass="nav-link">
+
+                Contact Us
+
+            </asp:HyperLink>
+
+
+            <!-- LOGIN -->
+
+            <asp:HyperLink
+                ID="lnkLogin"
+                runat="server"
+                NavigateUrl="~/Login.aspx"
+                CssClass="nav-link login-link">
+
+                Login
+
+            </asp:HyperLink>
+
+
+            <!-- USER DASHBOARD -->
+
+            <asp:HyperLink
+                ID="lnkUserDashboard"
+                runat="server"
+                NavigateUrl="~/UserDashboard.aspx"
+                CssClass="nav-link user-link"
+                Visible="False">
+
+                User Dashboard
+
+            </asp:HyperLink>
+
+
+            <!-- ADMIN DASHBOARD -->
+
+            <asp:HyperLink
+                ID="lnkAdminDashboard"
+                runat="server"
+                NavigateUrl="~/AdminDashboard.aspx"
+                CssClass="nav-link admin-link"
+                Visible="False">
+
+                Admin Dashboard
+
+            </asp:HyperLink>
+
+
+            <!-- LOGOUT -->
+
+            <asp:HyperLink
+                ID="lnkLogout"
+                runat="server"
+                NavigateUrl="~/Logout.aspx"
+                CssClass="nav-link logout-link"
+                Visible="False">
+
+                Logout
+
+            </asp:HyperLink>
+
+
+        </div>
+
+    </nav>
+
+
+    <!-- ==========================================
+         PAGE CONTENT
+         ========================================== -->
+
+    <div class="container">
+
+        <asp:ContentPlaceHolder
+            ID="MainContent"
+            runat="server">
+        </asp:ContentPlaceHolder>
+
+    </div>
+
+
+</form>
+
+</body>
+
+</html>
