@@ -27,6 +27,7 @@ Partial Class UsersPanel
         e As EventArgs
     ) Handles Me.Load
 
+
         ' ======================================
         ' CHECK LOGIN
         ' ======================================
@@ -40,18 +41,22 @@ Partial Class UsersPanel
 
 
         ' ======================================
-        ' CHECK ADMIN
+        ' CHECK ADMIN ROLE
         ' ======================================
 
-        If Session("UserRole") Is Nothing Then
+        If Session("Role") Is Nothing Then
 
-            Response.Redirect("~/Home.aspx")
+            Response.Redirect("~/Login.aspx")
             Return
 
         End If
 
 
-        If Session("UserRole").ToString().ToLower() <> "admin" Then
+        Dim role As String =
+            Session("Role").ToString().Trim().ToLower()
+
+
+        If role <> "admin" Then
 
             Response.Redirect("~/Home.aspx")
             Return
@@ -229,7 +234,8 @@ Partial Class UsersPanel
 
                 If searchText <> "" Then
 
-                    sql = sql &
+                    sql =
+                        sql &
                         " AND ([Name] LIKE @Search " &
                         "OR [Email] LIKE @Search " &
                         "OR [Mobile] LIKE @Search) "
@@ -243,7 +249,8 @@ Partial Class UsersPanel
 
                 If selectedRole <> "" Then
 
-                    sql = sql &
+                    sql =
+                        sql &
                         " AND [Role] = @Role "
 
                 End If
@@ -255,7 +262,8 @@ Partial Class UsersPanel
 
                 If selectedStatus <> "" Then
 
-                    sql = sql &
+                    sql =
+                        sql &
                         " AND [Status] = @Status "
 
                 End If
@@ -265,7 +273,8 @@ Partial Class UsersPanel
                 ' ORDER
                 ' ==================================
 
-                sql = sql &
+                sql =
+                    sql &
                     " ORDER BY UserID DESC"
 
 
@@ -275,7 +284,8 @@ Partial Class UsersPanel
 
                 Using cmd As New SqlCommand(
                     sql,
-                    con)
+                    con
+                )
 
 
                     ' ==================================
@@ -351,6 +361,7 @@ Partial Class UsersPanel
                         dt.Rows.Count.ToString() &
                         " users"
 
+
                 End Using
 
             End Using
@@ -376,7 +387,8 @@ Partial Class UsersPanel
     Protected Sub btnSearch_Click(
         sender As Object,
         e As EventArgs
-    )
+    ) Handles btnSearch.Click
+
 
         gvUsers.PageIndex = 0
 
@@ -393,7 +405,8 @@ Partial Class UsersPanel
     Protected Sub btnReset_Click(
         sender As Object,
         e As EventArgs
-    )
+    ) Handles btnReset.Click
+
 
         txtSearch.Text = ""
 
@@ -420,7 +433,8 @@ Partial Class UsersPanel
         e As GridViewPageEventArgs
     )
 
-        gvUsers.PageIndex = e.NewPageIndex
+        gvUsers.PageIndex =
+            e.NewPageIndex
 
         LoadUsers()
 
@@ -437,6 +451,7 @@ Partial Class UsersPanel
         e As GridViewCommandEventArgs
     )
 
+
         If e.CommandName = "ToggleStatus" Then
 
             Dim userID As Integer
@@ -444,7 +459,8 @@ Partial Class UsersPanel
 
             If Integer.TryParse(
                 e.CommandArgument.ToString(),
-                userID) Then
+                userID
+            ) Then
 
                 ToggleUserStatus(userID)
 
@@ -482,7 +498,8 @@ Partial Class UsersPanel
                     "SELECT [Status] " &
                     "FROM dbo.Users " &
                     "WHERE UserID = @UserID",
-                    con)
+                    con
+                )
 
                     cmd.Parameters.AddWithValue(
                         "@UserID",
@@ -519,7 +536,8 @@ Partial Class UsersPanel
                 Dim newStatus As String
 
 
-                If currentStatus.ToLower() = "active" Then
+                If currentStatus.Trim().ToLower() =
+                    "active" Then
 
                     newStatus = "Inactive"
 
@@ -538,7 +556,8 @@ Partial Class UsersPanel
                     "UPDATE dbo.Users " &
                     "SET [Status] = @Status " &
                     "WHERE UserID = @UserID",
-                    con)
+                    con
+                )
 
                     cmd.Parameters.AddWithValue(
                         "@Status",
@@ -598,6 +617,7 @@ Partial Class UsersPanel
         status As Object
     ) As String
 
+
         If status Is Nothing OrElse
            status Is DBNull.Value Then
 
@@ -606,7 +626,8 @@ Partial Class UsersPanel
         End If
 
 
-        If status.ToString().ToLower() = "active" Then
+        If status.ToString().Trim().ToLower() =
+            "active" Then
 
             Return "active-status"
 
@@ -627,6 +648,7 @@ Partial Class UsersPanel
         status As Object
     ) As String
 
+
         If status Is Nothing OrElse
            status Is DBNull.Value Then
 
@@ -635,7 +657,8 @@ Partial Class UsersPanel
         End If
 
 
-        If status.ToString().ToLower() = "active" Then
+        If status.ToString().Trim().ToLower() =
+            "active" Then
 
             Return "Deactivate"
 
@@ -656,6 +679,7 @@ Partial Class UsersPanel
         status As Object
     ) As String
 
+
         If status Is Nothing OrElse
            status Is DBNull.Value Then
 
@@ -664,7 +688,8 @@ Partial Class UsersPanel
         End If
 
 
-        If status.ToString().ToLower() = "active" Then
+        If status.ToString().Trim().ToLower() =
+            "active" Then
 
             Return "deactivate-button"
 
@@ -685,12 +710,14 @@ Partial Class UsersPanel
         message As String
     )
 
-        lblMessage.Text = message
+        lblMessage.Text =
+            message
 
         lblMessage.CssClass =
             "message success-message"
 
-        lblMessage.Visible = True
+        lblMessage.Visible =
+            True
 
     End Sub
 
@@ -704,12 +731,14 @@ Partial Class UsersPanel
         message As String
     )
 
-        lblMessage.Text = message
+        lblMessage.Text =
+            message
 
         lblMessage.CssClass =
             "message error-message"
 
-        lblMessage.Visible = True
+        lblMessage.Visible =
+            True
 
     End Sub
 

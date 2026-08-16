@@ -1,6 +1,7 @@
 ﻿Partial Class Site
     Inherits System.Web.UI.MasterPage
 
+
     Protected Sub Page_Load(
         ByVal sender As Object,
         ByVal e As System.EventArgs
@@ -11,64 +12,158 @@
     End Sub
 
 
+    '=========================================================
+    ' CHECK LOGIN STATUS
+    '=========================================================
+
     Private Sub CheckLoginStatus()
 
-        ' PUBLIC
+
+        '=========================================================
+        ' PUBLIC LINKS
+        '=========================================================
 
         lnkHome.Visible = True
         lnkAbout.Visible = True
-        lnkContact.Visible = True
 
 
-        ' DEFAULT
+        '=========================================================
+        ' DEFAULT STATE
+        '=========================================================
 
-        lnkLogin.Visible = True
+        lnkLogin.Visible = False
         lnkUserDashboard.Visible = False
+        lnkMyProfile.Visible = False
         lnkAdminDashboard.Visible = False
         lnkLogout.Visible = False
 
 
-        ' NOT LOGGED IN
+        '=========================================================
+        ' CHECK USER LOGIN
+        '=========================================================
 
         If Session("UserID") Is Nothing Then
+
+            lnkLogin.Visible = True
+
             Return
+
         End If
 
 
+        '=========================================================
         ' LOGGED IN
+        '=========================================================
 
-        lnkLogin.Visible = False
         lnkLogout.Visible = True
 
 
-        ' ROLE NOT FOUND
+        '=========================================================
+        ' GET ROLE
+        '
+        ' First check Session("Role")
+        ' If it does not exist, check Session("UserRole")
+        '=========================================================
 
-        If Session("UserRole") Is Nothing Then
-            Return
+        Dim role As String = ""
+
+
+        If Session("Role") IsNot Nothing Then
+
+            role =
+                Session("Role").ToString().Trim().ToLower()
+
+        ElseIf Session("UserRole") IsNot Nothing Then
+
+            role =
+                Session("UserRole").ToString().Trim().ToLower()
+
         End If
 
 
-        Dim role As String =
-            Session("UserRole").ToString().Trim().ToLower()
+        '=========================================================
+        ' ROLE NOT FOUND
+        '=========================================================
+
+        If role = "" Then
+
+            lnkLogin.Visible = True
+
+            Return
+
+        End If
 
 
+        '=========================================================
+        ' NORMAL USER
+        '=========================================================
+
+        If role = "user" Then
+
+            lnkUserDashboard.Visible = True
+
+            lnkMyProfile.Visible = False
+
+            lnkAdminDashboard.Visible = False
+
+            lnkLogin.Visible = False
+
+            Return
+
+        End If
+
+
+        '=========================================================
+        ' INVESTOR
+        '=========================================================
+
+        If role = "investor" Then
+
+            lnkUserDashboard.Visible = False
+
+            lnkMyProfile.Visible = True
+
+            lnkAdminDashboard.Visible = False
+
+            lnkLogin.Visible = False
+
+            Return
+
+        End If
+
+
+        '=========================================================
         ' ADMIN
+        '=========================================================
 
         If role = "admin" Then
 
-            lnkAdminDashboard.Visible = True
             lnkUserDashboard.Visible = False
 
+            lnkMyProfile.Visible = False
 
-            ' NORMAL USER
+            lnkAdminDashboard.Visible = True
 
-        ElseIf role = "user" Then
+            lnkLogin.Visible = False
 
-            lnkUserDashboard.Visible = True
-            lnkAdminDashboard.Visible = False
+            Return
 
         End If
 
+
+        '=========================================================
+        ' UNKNOWN ROLE
+        '=========================================================
+
+        lnkUserDashboard.Visible = False
+
+        lnkMyProfile.Visible = False
+
+        lnkAdminDashboard.Visible = False
+
+        lnkLogin.Visible = True
+
     End Sub
+
 
 End Class

@@ -12,13 +12,14 @@
     <style type="text/css">
 
         /* ==========================================
-           USERS PAGE
+           USERS PANEL
            ========================================== */
 
-        .users-page {
+        .users-panel {
             padding: 35px;
             background: #f5f7fb;
             min-height: 80vh;
+            box-sizing: border-box;
         }
 
 
@@ -27,37 +28,20 @@
            ========================================== */
 
         .users-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             margin-bottom: 30px;
         }
 
         .users-header h1 {
             margin: 0;
-            font-size: 30px;
             color: #111827;
+            font-size: 32px;
+            font-weight: 700;
         }
 
         .users-header p {
-            margin: 7px 0 0 0;
+            margin-top: 8px;
             color: #6b7280;
-            font-size: 14px;
-        }
-
-        .back-button {
-            display: inline-block;
-            text-decoration: none;
-            background: #111827;
-            color: white;
-            padding: 11px 18px;
-            border-radius: 7px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .back-button:hover {
-            background: #374151;
+            font-size: 15px;
         }
 
 
@@ -65,19 +49,21 @@
            STATISTICS
            ========================================== */
 
-        .statistics {
+        .statistics-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-            margin-bottom: 25px;
+            gap: 20px;
+            margin-bottom: 30px;
         }
 
         .stat-card {
-            background: white;
-            border-radius: 12px;
-            padding: 22px;
+            background: #ffffff;
             border: 1px solid #e5e7eb;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border-radius: 15px;
+            padding: 25px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.06);
         }
 
         .stat-title {
@@ -86,26 +72,119 @@
             margin-bottom: 10px;
         }
 
-        .stat-value {
+        .stat-number {
             color: #111827;
             font-size: 30px;
             font-weight: 700;
         }
 
-        .total-card {
-            border-left: 5px solid #2563eb;
+
+        /* ==========================================
+           SEARCH CARD
+           ========================================== */
+
+        .search-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.06);
         }
 
-        .active-card {
-            border-left: 5px solid #16a34a;
+        .search-title {
+            margin: 0 0 20px 0;
+            color: #111827;
+            font-size: 20px;
+            font-weight: 700;
         }
 
-        .inactive-card {
-            border-left: 5px solid #dc2626;
+        .search-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto auto;
+            gap: 15px;
+            align-items: end;
         }
 
-        .admin-card {
-            border-left: 5px solid #9333ea;
+
+        /* ==========================================
+           FORM
+           ========================================== */
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 7px;
+            color: #374151;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            height: 42px;
+
+            padding: 8px 12px;
+
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+
+            background: #ffffff;
+
+            font-size: 14px;
+
+            box-sizing: border-box;
+        }
+
+        .form-control:focus {
+            outline: none;
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 3px rgba(37, 99, 235, 0.10);
+        }
+
+
+        /* ==========================================
+           BUTTONS
+           ========================================== */
+
+        .btn {
+            height: 42px;
+
+            padding: 0 20px;
+
+            border: none;
+            border-radius: 8px;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .btn-search {
+            background: #2563eb;
+            color: #ffffff;
+        }
+
+        .btn-search:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-reset {
+            background: #6b7280;
+            color: #ffffff;
+        }
+
+        .btn-reset:hover {
+            background: #4b5563;
         }
 
 
@@ -115,98 +194,28 @@
 
         .message {
             display: block;
+
             padding: 12px 15px;
-            border-radius: 7px;
+
             margin-bottom: 20px;
+
+            border-radius: 8px;
+
+            border: 1px solid transparent;
+
             font-size: 14px;
-            font-weight: 600;
         }
 
         .success-message {
-            background: #dcfce7;
-            color: #166534;
+            background: #d1e7dd;
+            color: #146c43;
+            border-color: #badbcc;
         }
 
         .error-message {
-            background: #fee2e2;
-            color: #991b1b;
-        }
-
-
-        /* ==========================================
-           SEARCH PANEL
-           ========================================== */
-
-        .search-panel {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 25px;
-            border: 1px solid #e5e7eb;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-        }
-
-        .search-title {
-            margin: 0 0 15px 0;
-            color: #111827;
-            font-size: 18px;
-        }
-
-        .search-row {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .search-input {
-            flex: 1;
-            min-width: 250px;
-            height: 42px;
-            padding: 0 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 7px;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-
-        .filter-select {
-            min-width: 140px;
-            height: 42px;
-            padding: 0 10px;
-            border: 1px solid #d1d5db;
-            border-radius: 7px;
-            background: white;
-            font-size: 14px;
-        }
-
-        .search-button {
-            height: 42px;
-            padding: 0 20px;
-            border: none;
-            border-radius: 7px;
-            background: #2563eb;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .search-button:hover {
-            background: #1d4ed8;
-        }
-
-        .reset-button {
-            height: 42px;
-            padding: 0 20px;
-            border: none;
-            border-radius: 7px;
-            background: #6b7280;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .reset-button:hover {
-            background: #4b5563;
+            background: #f8d7da;
+            color: #b02a37;
+            border-color: #f5c2c7;
         }
 
 
@@ -214,52 +223,86 @@
            USERS TABLE
            ========================================== */
 
-        .users-table-panel {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
+        .users-table-card {
+            background: #ffffff;
+
             border: 1px solid #e5e7eb;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+
+            border-radius: 15px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.06);
+
             overflow-x: auto;
         }
 
         .table-header {
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
-            margin-bottom: 18px;
+
+            margin-bottom: 20px;
         }
 
         .table-header h2 {
             margin: 0;
-            font-size: 21px;
+
             color: #111827;
+
+            font-size: 20px;
+
+            font-weight: 700;
         }
 
         .user-count {
             color: #6b7280;
+
             font-size: 14px;
+
+            font-weight: 600;
         }
+
+
+        /* ==========================================
+           GRIDVIEW
+           ========================================== */
 
         .users-grid {
             width: 100%;
+
             border-collapse: collapse;
-            min-width: 850px;
+
+            font-size: 14px;
         }
 
         .users-grid th {
-            background: #111827;
-            color: white;
-            padding: 13px 10px;
+            background: #f3f4f6;
+
+            color: #374151;
+
+            padding: 14px 12px;
+
             text-align: left;
-            font-size: 13px;
+
+            font-weight: 700;
+
+            border-bottom: 1px solid #e5e7eb;
+
+            white-space: nowrap;
         }
 
         .users-grid td {
-            padding: 13px 10px;
+            padding: 14px 12px;
+
+            color: #4b5563;
+
             border-bottom: 1px solid #e5e7eb;
-            color: #374151;
-            font-size: 14px;
+
+            vertical-align: middle;
         }
 
         .users-grid tr:hover td {
@@ -268,41 +311,38 @@
 
 
         /* ==========================================
-           ROLE BADGE
-           ========================================== */
-
-        .role-badge {
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 20px;
-            background: #dbeafe;
-            color: #1e40af;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-
-        /* ==========================================
-           STATUS BADGE
+           STATUS
            ========================================== */
 
         .active-status {
             display: inline-block;
+
             padding: 5px 10px;
+
             border-radius: 20px;
+
             background: #dcfce7;
+
             color: #166534;
+
             font-size: 12px;
+
             font-weight: 600;
         }
 
         .inactive-status {
             display: inline-block;
+
             padding: 5px 10px;
+
             border-radius: 20px;
+
             background: #fee2e2;
+
             color: #991b1b;
+
             font-size: 12px;
+
             font-weight: 600;
         }
 
@@ -311,37 +351,55 @@
            STATUS BUTTON
            ========================================== */
 
-        .activate-button {
+        .status-button {
             border: none;
-            background: #dcfce7;
-            color: #166534;
-            padding: 7px 12px;
-            border-radius: 6px;
-            cursor: pointer;
+
+            border-radius: 7px;
+
+            padding: 8px 14px;
+
             font-size: 12px;
+
             font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .activate-button {
+            background: #dcfce7;
+
+            color: #166534;
+        }
+
+        .activate-button:hover {
+            background: #bbf7d0;
         }
 
         .deactivate-button {
-            border: none;
             background: #fee2e2;
+
             color: #991b1b;
-            padding: 7px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 600;
+        }
+
+        .deactivate-button:hover {
+            background: #fecaca;
         }
 
 
         /* ==========================================
-           PAGING
+           PAGINATION
            ========================================== */
 
-        .users-grid a,
-        .users-grid span {
-            padding: 6px 10px;
-            margin: 2px;
+        .users-grid a {
+            color: #2563eb;
+
+            text-decoration: none;
+
+            font-weight: 600;
+        }
+
+        .users-grid a:hover {
+            text-decoration: underline;
         }
 
 
@@ -349,28 +407,39 @@
            RESPONSIVE
            ========================================== */
 
-        @media (max-width: 900px) {
+        @media (max-width: 1000px) {
 
-            .statistics {
+            .statistics-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .search-grid {
+                grid-template-columns: 1fr 1fr;
             }
 
         }
 
-        @media (max-width: 600px) {
 
-            .users-page {
+        @media (max-width: 700px) {
+
+            .users-panel {
                 padding: 20px;
             }
 
-            .users-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
+            .statistics-grid {
+                grid-template-columns: 1fr;
             }
 
-            .statistics {
+            .search-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .table-header {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 8px;
             }
 
         }
@@ -378,245 +447,271 @@
     </style>
 
 
-    <div class="users-page">
+    <!-- ==========================================
+         USERS PANEL
+         ========================================== -->
+
+    <div class="users-panel">
 
 
-        <!-- ==========================================
+        <!-- ======================================
              HEADER
-             ========================================== -->
+             ====================================== -->
 
         <div class="users-header">
 
-            <div>
+            <h1>
+                Users Panel
+            </h1>
 
-                <h1>
-                    👥 Users Panel
-                </h1>
-
-                <p>
-                    View and manage all registered users
-                </p>
-
-            </div>
-
-            <a
-                href="AdminDashboard.aspx"
-                class="back-button">
-
-                ← Admin Dashboard
-
-            </a>
+            <p>
+                View, search and manage all registered users.
+            </p>
 
         </div>
 
 
-        <!-- ==========================================
-             MESSAGE
-             ========================================== -->
-
-        <asp:Label
-            ID="lblMessage"
-            runat="server"
-            Visible="false">
-        </asp:Label>
-
-
-        <!-- ==========================================
+        <!-- ======================================
              STATISTICS
-             ========================================== -->
+             ====================================== -->
 
-        <div class="statistics">
+        <div class="statistics-grid">
 
 
-            <!-- TOTAL -->
+            <!-- TOTAL USERS -->
 
-            <div class="stat-card total-card">
+            <div class="stat-card">
 
                 <div class="stat-title">
                     Total Users
                 </div>
 
-                <div class="stat-value">
-
-                    <asp:Label
-                        ID="lblTotalUsers"
-                        runat="server"
-                        Text="0">
-                    </asp:Label>
-
-                </div>
+                <asp:Label
+                    ID="lblTotalUsers"
+                    runat="server"
+                    CssClass="stat-number"
+                    Text="0">
+                </asp:Label>
 
             </div>
 
 
-            <!-- ACTIVE -->
+            <!-- ACTIVE USERS -->
 
-            <div class="stat-card active-card">
+            <div class="stat-card">
 
                 <div class="stat-title">
                     Active Users
                 </div>
 
-                <div class="stat-value">
-
-                    <asp:Label
-                        ID="lblActiveUsers"
-                        runat="server"
-                        Text="0">
-                    </asp:Label>
-
-                </div>
+                <asp:Label
+                    ID="lblActiveUsers"
+                    runat="server"
+                    CssClass="stat-number"
+                    Text="0">
+                </asp:Label>
 
             </div>
 
 
-            <!-- INACTIVE -->
+            <!-- INACTIVE USERS -->
 
-            <div class="stat-card inactive-card">
+            <div class="stat-card">
 
                 <div class="stat-title">
                     Inactive Users
                 </div>
 
-                <div class="stat-value">
-
-                    <asp:Label
-                        ID="lblInactiveUsers"
-                        runat="server"
-                        Text="0">
-                    </asp:Label>
-
-                </div>
+                <asp:Label
+                    ID="lblInactiveUsers"
+                    runat="server"
+                    CssClass="stat-number"
+                    Text="0">
+                </asp:Label>
 
             </div>
 
 
-            <!-- ADMIN -->
+            <!-- ADMIN USERS -->
 
-            <div class="stat-card admin-card">
+            <div class="stat-card">
 
                 <div class="stat-title">
                     Admin Users
                 </div>
 
-                <div class="stat-value">
+                <asp:Label
+                    ID="lblAdminUsers"
+                    runat="server"
+                    CssClass="stat-number"
+                    Text="0">
+                </asp:Label>
 
-                    <asp:Label
-                        ID="lblAdminUsers"
+            </div>
+
+
+        </div>
+
+
+        <!-- ======================================
+             MESSAGE
+             ====================================== -->
+
+        <asp:Label
+            ID="lblMessage"
+            runat="server"
+            CssClass="message"
+            Visible="False">
+        </asp:Label>
+
+
+        <!-- ======================================
+             SEARCH & FILTER
+             ====================================== -->
+
+        <div class="search-card">
+
+            <h2 class="search-title">
+                Search &amp; Filter Users
+            </h2>
+
+
+            <div class="search-grid">
+
+
+                <!-- SEARCH -->
+
+                <div class="form-group">
+
+                    <label>
+                        Search
+                    </label>
+
+                    <asp:TextBox
+                        ID="txtSearch"
                         runat="server"
-                        Text="0">
-                    </asp:Label>
+                        CssClass="form-control"
+                        placeholder="Search by name, email or mobile">
+                    </asp:TextBox>
 
                 </div>
 
+
+                <!-- ROLE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Role
+                    </label>
+
+                    <asp:DropDownList
+                        ID="ddlRole"
+                        runat="server"
+                        CssClass="form-control">
+
+                        <asp:ListItem
+                            Text="All Roles"
+                            Value="">
+                        </asp:ListItem>
+
+                        <asp:ListItem
+                            Text="Admin"
+                            Value="Admin">
+                        </asp:ListItem>
+
+                        <asp:ListItem
+                            Text="User"
+                            Value="User">
+                        </asp:ListItem>
+
+                        <asp:ListItem
+                            Text="Investor"
+                            Value="Investor">
+                        </asp:ListItem>
+
+                    </asp:DropDownList>
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <div class="form-group">
+
+                    <label>
+                        Status
+                    </label>
+
+                    <asp:DropDownList
+                        ID="ddlStatus"
+                        runat="server"
+                        CssClass="form-control">
+
+                        <asp:ListItem
+                            Text="All Status"
+                            Value="">
+                        </asp:ListItem>
+
+                        <asp:ListItem
+                            Text="Active"
+                            Value="Active">
+                        </asp:ListItem>
+
+                        <asp:ListItem
+                            Text="Inactive"
+                            Value="Inactive">
+                        </asp:ListItem>
+
+                    </asp:DropDownList>
+
+                </div>
+
+
+                <!-- SEARCH BUTTON -->
+
+                <div class="form-group">
+
+                    <asp:Button
+                        ID="btnSearch"
+                        runat="server"
+                        Text="Search"
+                        CssClass="btn btn-search">
+                    </asp:Button>
+
+                </div>
+
+
+                <!-- RESET BUTTON -->
+
+                <div class="form-group">
+
+                    <asp:Button
+                        ID="btnReset"
+                        runat="server"
+                        Text="Reset"
+                        CssClass="btn btn-reset">
+                    </asp:Button>
+
+                </div>
+
+
             </div>
 
         </div>
 
 
-        <!-- ==========================================
-             SEARCH / FILTER
-             ========================================== -->
-
-        <div class="search-panel">
-
-            <h2 class="search-title">
-                Search Users
-            </h2>
-
-            <div class="search-row">
-
-
-                <asp:TextBox
-                    ID="txtSearch"
-                    runat="server"
-                    CssClass="search-input"
-                    placeholder="Search by name, email or mobile">
-                </asp:TextBox>
-
-
-                <asp:DropDownList
-                    ID="ddlRole"
-                    runat="server"
-                    CssClass="filter-select">
-
-                    <asp:ListItem
-                        Text="All Roles"
-                        Value="">
-                    </asp:ListItem>
-
-                    <asp:ListItem
-                        Text="User"
-                        Value="User">
-                    </asp:ListItem>
-
-                    <asp:ListItem
-                        Text="Admin"
-                        Value="Admin">
-                    </asp:ListItem>
-
-                    <asp:ListItem
-                        Text="Investor"
-                        Value="Investor">
-                    </asp:ListItem>
-
-                </asp:DropDownList>
-
-
-                <asp:DropDownList
-                    ID="ddlStatus"
-                    runat="server"
-                    CssClass="filter-select">
-
-                    <asp:ListItem
-                        Text="All Status"
-                        Value="">
-                    </asp:ListItem>
-
-                    <asp:ListItem
-                        Text="Active"
-                        Value="Active">
-                    </asp:ListItem>
-
-                    <asp:ListItem
-                        Text="Inactive"
-                        Value="Inactive">
-                    </asp:ListItem>
-
-                </asp:DropDownList>
-
-
-                <asp:Button
-                    ID="btnSearch"
-                    runat="server"
-                    Text="Search"
-                    CssClass="search-button"
-                    OnClick="btnSearch_Click" />
-
-
-                <asp:Button
-                    ID="btnReset"
-                    runat="server"
-                    Text="Reset"
-                    CssClass="reset-button"
-                    OnClick="btnReset_Click" />
-
-            </div>
-
-        </div>
-
-
-        <!-- ==========================================
+        <!-- ======================================
              USERS TABLE
-             ========================================== -->
+             ====================================== -->
 
-        <div class="users-table-panel">
+        <div class="users-table-card">
 
 
             <div class="table-header">
 
                 <h2>
-                    All Users
+                    Registered Users
                 </h2>
 
                 <asp:Label
@@ -636,38 +731,36 @@
                 CssClass="users-grid"
                 GridLines="None"
                 AllowPaging="True"
-                PageSize="15"
+                PageSize="10"
                 DataKeyNames="UserID"
-                EmptyDataText="No users found."
                 OnPageIndexChanging="gvUsers_PageIndexChanging"
                 OnRowCommand="gvUsers_RowCommand">
-
 
                 <Columns>
 
 
-                  
+                 
 
                     <asp:BoundField
                         DataField="UserID"
                         HeaderText="ID" />
 
 
-                   
+                    
 
                     <asp:BoundField
                         DataField="Name"
                         HeaderText="Name" />
 
 
-                   
+                  
 
                     <asp:BoundField
                         DataField="Email"
                         HeaderText="Email" />
 
 
-               
+                   
 
                     <asp:BoundField
                         DataField="Mobile"
@@ -676,18 +769,9 @@
 
                    
 
-                    <asp:TemplateField
-                        HeaderText="Role">
-
-                        <ItemTemplate>
-
-                            <span class="role-badge">
-                                <%# Eval("Role") %>
-                            </span>
-
-                        </ItemTemplate>
-
-                    </asp:TemplateField>
+                    <asp:BoundField
+                        DataField="Role"
+                        HeaderText="Role" />
 
 
                  
@@ -709,7 +793,6 @@
                     </asp:TemplateField>
 
 
-                   
 
                     <asp:TemplateField
                         HeaderText="Action">
@@ -717,13 +800,13 @@
                         <ItemTemplate>
 
                             <asp:Button
-                                ID="btnStatus"
+                                ID="btnToggleStatus"
                                 runat="server"
-                                CommandName="ToggleStatus"
-                                CommandArgument='<%# Eval("UserID") %>'
                                 Text='<%# GetStatusButtonText(Eval("Status")) %>'
-                                CssClass='<%# GetStatusButtonCss(Eval("Status")) %>'
-                                OnClientClick="return confirm('Are you sure you want to change this user status?');" />
+                                CssClass='<%# "status-button " & GetStatusButtonCss(Eval("Status")) %>'
+                                CommandName="ToggleStatus"
+                                CommandArgument='<%# Eval("UserID") %>'>
+                            </asp:Button>
 
                         </ItemTemplate>
 
@@ -732,7 +815,23 @@
 
                 </Columns>
 
+
+                <EmptyDataTemplate>
+
+                    <div style="
+                        padding: 30px;
+                        text-align: center;
+                        color: #6b7280;
+                    ">
+
+                        No users found.
+
+                    </div>
+
+                </EmptyDataTemplate>
+
             </asp:GridView>
+
 
         </div>
 
@@ -740,4 +839,3 @@
     </div>
 
 </asp:Content>
-

@@ -311,7 +311,7 @@
         <asp:HyperLink
             ID="btnOpenInvestors"
             runat="server"
-            NavigateUrl="~/Investors.aspx"
+            NavigateUrl="~/InvestorRegister.aspx"
             Text="Open Investor Register"
             CssClass="primary-button">
         </asp:HyperLink>
@@ -410,7 +410,7 @@
         <asp:HyperLink
             ID="lnkInvestorRegister"
             runat="server"
-            NavigateUrl="~/Investors.aspx"
+            NavigateUrl="~/InvestorRegister.aspx"
             CssClass="action-card">
 
             <div class="action-icon">

@@ -1,87 +1,32 @@
 ﻿<%@ Page Language="VB"
+    MasterPageFile="~/Site.master"
     AutoEventWireup="false"
     CodeFile="Investors.aspx.vb"
     Inherits="Investors" %>
 
-<!DOCTYPE html>
+<asp:Content
+    ID="Content1"
+    ContentPlaceHolderID="MainContent"
+    runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head runat="server">
-
-    <title>Investors - ABC Company</title>
-
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1" />
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f3f6f9;
-            color: #1f2937;
-        }
-
-
-        /* ==========================================
-           NAVBAR
-           ========================================== */
-
-        .navbar {
-            width: 100%;
-            background: #111827;
-            min-height: 65px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            padding: 0 30px;
-        }
-
-        .logo {
-            color: white;
-            text-decoration: none;
-            font-size: 22px;
-            font-weight: bold;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 14px;
-            border-radius: 6px;
-            font-size: 14px;
-        }
-
-        .nav-links a:hover {
-            background: #374151;
-        }
-
+    <style type="text/css">
 
         /* ==========================================
            MAIN CONTAINER
            ========================================== */
 
-        .container {
+        .investors-container {
             width: 100%;
             max-width: 1450px;
             margin: 0 auto;
             padding: 30px 20px 50px 20px;
+            box-sizing: border-box;
         }
 
+
+        /* ==========================================
+           PAGE HEADER
+           ========================================== */
 
         .page-header {
             margin-bottom: 25px;
@@ -108,6 +53,7 @@
             display: block;
             padding: 12px 15px;
             margin-bottom: 20px;
+
             border: 1px solid;
             border-radius: 6px;
         }
@@ -320,6 +266,8 @@
             background: white;
 
             font-size: 14px;
+
+            box-sizing: border-box;
         }
 
 
@@ -524,19 +472,8 @@
 
         @media (max-width: 750px) {
 
-            .navbar {
-                flex-direction: column;
-
-                padding: 15px;
-
-                gap: 12px;
-            }
-
-
-            .nav-links {
-                flex-wrap: wrap;
-
-                justify-content: center;
+            .investors-container {
+                padding: 20px;
             }
 
 
@@ -573,59 +510,17 @@
 
     </style>
 
-</head>
-
-
-<body>
-
-<form
-    id="form1"
-    runat="server">
-
 
     <!-- ==========================================
-         NAVBAR
+         INVESTORS PAGE
          ========================================== -->
 
-    <nav class="navbar">
-
-        <a
-            href="Home.aspx"
-            class="logo">
-
-            ABC Company
-
-        </a>
+    <div class="investors-container">
 
 
-        <div class="nav-links">
-
-            <a href="Home.aspx">
-                Home
-            </a>
-
-            <a href="About.aspx">
-                About
-            </a>
-
-
-            <a href="Logout.aspx">
-                Logout
-            </a>
-
-        </div>
-
-    </nav>
-
-
-    <!-- ==========================================
-         MAIN
-         ========================================== -->
-
-    <main class="container">
-
-
-        <!-- PAGE HEADER -->
+        <!-- ==========================================
+             PAGE HEADER
+             ========================================== -->
 
         <div class="page-header">
 
@@ -701,6 +596,7 @@
 
             </div>
 
+
         </div>
 
 
@@ -719,17 +615,13 @@
                     Department-wise Investor Count
                 </h2>
 
-
                 <div class="table-wrapper">
 
                     <asp:GridView
                         ID="gvDepartmentStats"
                         runat="server"
-
                         AutoGenerateColumns="False"
-
                         CssClass="statistics-table"
-
                         GridLines="None">
 
                         <Columns>
@@ -737,7 +629,6 @@
                             <asp:BoundField
                                 DataField="Department"
                                 HeaderText="Department" />
-
 
                             <asp:BoundField
                                 DataField="InvestorCount"
@@ -761,17 +652,13 @@
                     Designation-wise Investor Count
                 </h2>
 
-
                 <div class="table-wrapper">
 
                     <asp:GridView
                         ID="gvDesignationStats"
                         runat="server"
-
                         AutoGenerateColumns="False"
-
                         CssClass="statistics-table"
-
                         GridLines="None">
 
                         <Columns>
@@ -779,7 +666,6 @@
                             <asp:BoundField
                                 DataField="Designation"
                                 HeaderText="Designation" />
-
 
                             <asp:BoundField
                                 DataField="InvestorCount"
@@ -793,6 +679,7 @@
                 </div>
 
             </div>
+
 
         </div>
 
@@ -1000,6 +887,7 @@
 
                 </div>
 
+
             </div>
 
 
@@ -1022,6 +910,7 @@
                     Visible="false" />
 
             </div>
+
 
         </div>
 
@@ -1172,9 +1061,6 @@
         </div>
 
 
-        <!-- ==========================================
-             ALL INVESTORS
-             ========================================== -->
 
         <div class="card">
 
@@ -1188,15 +1074,10 @@
                 <asp:GridView
                     ID="gvInvestors"
                     runat="server"
-
                     AutoGenerateColumns="False"
-
                     AutoGenerateSelectButton="True"
-
                     DataKeyNames="InvestorID"
-
                     CssClass="investor-table"
-
                     GridLines="None">
 
                     <Columns>
@@ -1208,7 +1089,7 @@
                             HeaderText="ID" />
 
 
-                  
+                     
 
                         <asp:BoundField
                             DataField="Name"
@@ -1228,14 +1109,13 @@
                             HeaderText="Mobile" />
 
 
-                      
+                     
 
                         <asp:BoundField
                             DataField="Department"
                             HeaderText="Department" />
 
 
-                      
 
                         <asp:BoundField
                             DataField="Designation"
@@ -1249,7 +1129,6 @@
                             DataFormatString="{0:N2}" />
 
 
-                        
 
                         <asp:TemplateField
                             HeaderText="Action">
@@ -1259,15 +1138,10 @@
                                 <asp:Button
                                     ID="btnDelete"
                                     runat="server"
-
                                     Text="Delete"
-
                                     CssClass="delete-button"
-
                                     CommandName="DeleteInvestor"
-
                                     CommandArgument='<%# Eval("InvestorID") %>'
-
                                     OnClientClick="return confirm('Are you sure you want to delete this investor?');" />
 
                             </ItemTemplate>
@@ -1284,10 +1158,6 @@
         </div>
 
 
-    </main>
+    </div>
 
-</form>
-
-</body>
-
-</html>
+</asp:Content>

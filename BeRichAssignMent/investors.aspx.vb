@@ -2,6 +2,9 @@
 Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Configuration
+Imports System.Web.UI
+Imports System.Web.UI.WebControls
+
 
 Partial Class Investors
     Inherits System.Web.UI.Page
@@ -17,6 +20,7 @@ Partial Class Investors
         ).ConnectionString
 
 
+
     ' ==========================================
     ' PAGE LOAD
     ' ==========================================
@@ -28,7 +32,7 @@ Partial Class Investors
 
 
         ' ==========================================
-        ' ADMIN ACCESS ONLY
+        ' CHECK LOGIN
         ' ==========================================
 
         If Session("UserID") Is Nothing Then
@@ -46,14 +50,28 @@ Partial Class Investors
 
 
         ' ==========================================
-        ' ADMIN ROLE ONLY
+        ' CHECK ADMIN ROLE
         ' ==========================================
 
-        If Session("UserRole") Is Nothing OrElse
-           Not Session("UserRole").ToString().Trim().Equals(
-               "admin",
-               StringComparison.OrdinalIgnoreCase
-           ) Then
+        If Session("Role") Is Nothing Then
+
+            Response.Redirect(
+                "~/Login.aspx",
+                False
+            )
+
+            Context.ApplicationInstance.CompleteRequest()
+
+            Return
+
+        End If
+
+
+        Dim role As String =
+            Session("Role").ToString().Trim().ToLower()
+
+
+        If role <> "admin" Then
 
             Response.Redirect(
                 "~/Home.aspx",
@@ -88,6 +106,7 @@ Partial Class Investors
         End If
 
     End Sub
+
 
 
     ' ==========================================
@@ -147,6 +166,7 @@ Partial Class Investors
     End Sub
 
 
+
     ' ==========================================
     ' LOAD STATISTICS
     '
@@ -184,6 +204,7 @@ Partial Class Investors
                             cmdTotal.ExecuteScalar()
                         )
 
+
                     lblTotalInvestors.Text =
                         totalInvestors.ToString()
 
@@ -208,6 +229,7 @@ Partial Class Investors
                         Convert.ToDecimal(
                             cmdInvestment.ExecuteScalar()
                         )
+
 
                     lblTotalInvestment.Text =
                         totalInvestment.ToString("N2")
@@ -303,6 +325,7 @@ Partial Class Investors
     End Sub
 
 
+
     ' ==========================================
     ' SEARCH BUTTON
     ' ==========================================
@@ -317,6 +340,7 @@ Partial Class Investors
     End Sub
 
 
+
     ' ==========================================
     ' SEARCH INVESTORS
     ' ==========================================
@@ -326,8 +350,10 @@ Partial Class Investors
         Dim searchText As String =
             txtSearch.Text.Trim()
 
+
         Dim department As String =
             ddlSearchDepartment.SelectedValue.Trim()
+
 
         Dim designation As String =
             ddlSearchDesignation.SelectedValue.Trim()
@@ -389,6 +415,10 @@ Partial Class Investors
 
                 End If
 
+
+                ' ==========================================
+                ' ORDER
+                ' ==========================================
 
                 sql &=
                     "ORDER BY InvestorID DESC"
@@ -494,6 +524,7 @@ Partial Class Investors
     End Sub
 
 
+
     ' ==========================================
     ' CLEAR SEARCH
     ' ==========================================
@@ -502,6 +533,7 @@ Partial Class Investors
         sender As Object,
         e As EventArgs
     ) Handles btnClearSearch.Click
+
 
         txtSearch.Text = ""
 
@@ -518,6 +550,7 @@ Partial Class Investors
     End Sub
 
 
+
     ' ==========================================
     ' ADD / UPDATE INVESTOR
     ' ==========================================
@@ -531,17 +564,22 @@ Partial Class Investors
         Dim name As String =
             txtName.Text.Trim()
 
+
         Dim email As String =
             txtEmail.Text.Trim()
+
 
         Dim mobile As String =
             txtPhone.Text.Trim()
 
+
         Dim department As String =
             ddlDepartment.SelectedValue.Trim()
 
+
         Dim designation As String =
             ddlDesignation.SelectedValue.Trim()
+
 
         Dim investmentText As String =
             txtInvestmentAmount.Text.Trim()
@@ -674,35 +712,40 @@ Partial Class Investors
                             "@Name",
                             SqlDbType.NVarChar,
                             100
-                        ).Value = name
+                        ).Value =
+                            name
 
 
                         cmd.Parameters.Add(
                             "@Email",
                             SqlDbType.NVarChar,
                             150
-                        ).Value = email
+                        ).Value =
+                            email
 
 
                         cmd.Parameters.Add(
                             "@Mobile",
                             SqlDbType.NVarChar,
                             20
-                        ).Value = mobile
+                        ).Value =
+                            mobile
 
 
                         cmd.Parameters.Add(
                             "@Department",
                             SqlDbType.NVarChar,
                             100
-                        ).Value = department
+                        ).Value =
+                            department
 
 
                         cmd.Parameters.Add(
                             "@Designation",
                             SqlDbType.NVarChar,
                             100
-                        ).Value = designation
+                        ).Value =
+                            designation
 
 
                         Dim pInvestment =
@@ -723,7 +766,8 @@ Partial Class Investors
                         cmd.Parameters.Add(
                             "@InvestorID",
                             SqlDbType.Int
-                        ).Value = investorId
+                        ).Value =
+                            investorId
 
 
                         cmd.ExecuteNonQuery()
@@ -947,6 +991,7 @@ Partial Class Investors
     End Sub
 
 
+
     ' ==========================================
     ' GRID SELECT
     ' ==========================================
@@ -975,6 +1020,7 @@ Partial Class Investors
         LoadInvestor(investorId)
 
     End Sub
+
 
 
     ' ==========================================
@@ -1100,6 +1146,7 @@ Partial Class Investors
     End Sub
 
 
+
     ' ==========================================
     ' DELETE INVESTOR
     ' ==========================================
@@ -1118,7 +1165,6 @@ Partial Class Investors
 
 
         Try
-
 
             Dim investorId As Integer =
                 Convert.ToInt32(
@@ -1200,6 +1246,7 @@ Partial Class Investors
     End Sub
 
 
+
     ' ==========================================
     ' CANCEL UPDATE
     ' ==========================================
@@ -1228,6 +1275,7 @@ Partial Class Investors
     End Sub
 
 
+
     ' ==========================================
     ' CLEAR FORM
     ' ==========================================
@@ -1247,6 +1295,7 @@ Partial Class Investors
         txtInvestmentAmount.Text = ""
 
     End Sub
+
 
 
     ' ==========================================
@@ -1279,6 +1328,7 @@ Partial Class Investors
     End Sub
 
 
+
     ' ==========================================
     ' ERROR MESSAGE
     ' ==========================================
@@ -1307,5 +1357,6 @@ Partial Class Investors
             )
 
     End Sub
+
 
 End Class

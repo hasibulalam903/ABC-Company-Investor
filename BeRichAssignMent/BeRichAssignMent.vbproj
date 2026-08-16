@@ -94,6 +94,8 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="bin\About.aspx" />
+    <Content Include="InvestorRegister.aspx" />
+    <Content Include="MyProfile.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +111,13 @@
     </Compile>
     <Compile Include="bin\About.aspx.vb">
       <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="InvestorRegister.aspx.designer.vb">
+      <DependentUpon>InvestorRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InvestorRegister.aspx.vb">
+      <DependentUpon>InvestorRegister.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -129,6 +138,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="MyProfile.aspx.designer.vb">
+      <DependentUpon>MyProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyProfile.aspx.vb">
+      <DependentUpon>MyProfile.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

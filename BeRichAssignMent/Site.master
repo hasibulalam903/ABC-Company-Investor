@@ -21,77 +21,350 @@
         </asp:ContentPlaceHolder>
     </title>
 
-    <style>
 
+    <style type="text/css">
+
+        /* ==========================================
+           GLOBAL
+           ========================================== */
+
+        html,
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fa;
+            width: 100%;
+            min-height: 100%;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background-color: #f5f7fa;
         }
+
+
+        /* ==========================================
+           ASP.NET FORM
+           ========================================== */
+
+        #form1 {
+            width: 100%;
+            min-height: 100vh;
+
+            margin: 0;
+            padding: 0;
+        }
+
+
+        /* ==========================================
+           NAVBAR
+           ========================================== */
 
         .navbar {
-            background: #212529;
+            width: 100%;
+
+            background-color: #212529;
+
             padding: 12px 25px;
+
+            box-sizing: border-box;
+
+            position: relative;
+
+            z-index: 99999;
         }
 
+
+        /* ==========================================
+           NAVBAR CONTAINER
+           ========================================== */
+
         .navbar-container {
+            width: 100%;
+
             max-width: 1400px;
+
             margin: 0 auto;
+
             display: flex;
+
             align-items: center;
+
             flex-wrap: wrap;
+
+            position: relative;
+
+            z-index: 100000;
         }
+
+
+        /* ==========================================
+           BRAND
+           ========================================== */
 
         .navbar-brand {
             color: white !important;
+
             font-size: 22px;
+
             font-weight: bold;
+
             text-decoration: none;
+
             margin-right: 25px;
+
+            padding: 9px 13px;
+
+            display: inline-block;
+
+            border-radius: 5px;
+
+            position: relative;
+
+            z-index: 100001;
+
+            cursor: pointer;
+
+            pointer-events: auto;
         }
+
+
+        .navbar-brand:hover {
+            background-color: #343a40;
+
+            color: white !important;
+
+            text-decoration: none;
+        }
+
+
+        /* ==========================================
+           NAV LINKS
+           ========================================== */
 
         .nav-link {
             color: white !important;
+
             text-decoration: none;
+
             padding: 9px 13px;
+
             margin-right: 5px;
+
             display: inline-block;
+
             border-radius: 5px;
+
+            position: relative;
+
+            z-index: 100001;
+
+            cursor: pointer;
+
+            pointer-events: auto;
         }
+
 
         .nav-link:hover {
-            background: #343a40;
+            background-color: #343a40;
+
+            color: white !important;
+
+            text-decoration: none;
         }
+
+
+        /* ==========================================
+           LOGIN
+           ========================================== */
 
         .login-link {
-            background: #0d6efd;
-        }
+            background-color: #0d6efd;
 
-        .admin-link {
-            color: #ffc107 !important;
+            color: white !important;
+
             font-weight: bold;
         }
+
+
+        .login-link:hover {
+            background-color: #0b5ed7;
+
+            color: white !important;
+        }
+
+
+        /* ==========================================
+           USER / INVESTOR
+           ========================================== */
 
         .user-link {
             color: #8ec5ff !important;
+
             font-weight: bold;
         }
+
+
+        .user-link:hover {
+            background-color: #343a40;
+
+            color: #8ec5ff !important;
+        }
+
+
+        /* ==========================================
+           ADMIN
+           ========================================== */
+
+        .admin-link {
+            color: #ffc107 !important;
+
+            font-weight: bold;
+        }
+
+
+        .admin-link:hover {
+            background-color: #343a40;
+
+            color: #ffc107 !important;
+        }
+
+
+        /* ==========================================
+           LOGOUT
+           ========================================== */
 
         .logout-link {
             color: #ff6b6b !important;
+
             font-weight: bold;
         }
 
+
+        .logout-link:hover {
+            background-color: #343a40;
+
+            color: #ff6b6b !important;
+        }
+
+
+        /* ==========================================
+           MAIN CONTENT
+           ========================================== */
+
         .container {
             width: 100%;
+
             max-width: 1400px;
+
             margin: 0 auto;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+            position: relative;
+
+            z-index: 1;
+        }
+
+
+        /* ==========================================
+           MAIN CONTENT PLACEHOLDER
+           ========================================== */
+
+        #mainContent {
+            width: 100%;
+
+            position: relative;
+
+            z-index: 1;
+        }
+
+
+        /* ==========================================
+           MOBILE
+           ========================================== */
+
+        @media screen and (max-width: 768px) {
+
+            .navbar {
+                padding: 10px 15px;
+            }
+
+
+            .navbar-container {
+                flex-direction: row;
+
+                align-items: center;
+            }
+
+
+            .navbar-brand {
+                font-size: 20px;
+
+                margin-right: 10px;
+
+                padding: 8px 10px;
+            }
+
+
+            .nav-link {
+                font-size: 14px;
+
+                padding: 8px 10px;
+
+                margin-right: 3px;
+            }
+
+        }
+
+
+        /* ==========================================
+           SMALL MOBILE
+           ========================================== */
+
+        @media screen and (max-width: 550px) {
+
+            .navbar-container {
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+
+            .navbar-brand {
+                width: 100%;
+
+                margin-right: 0;
+
+                margin-bottom: 5px;
+
+                text-align: center;
+
+                box-sizing: border-box;
+            }
+
+
+            .nav-link {
+                width: 100%;
+
+                margin-right: 0;
+
+                margin-bottom: 4px;
+
+                text-align: center;
+
+                box-sizing: border-box;
+            }
+
         }
 
     </style>
 
 </head>
+
 
 <body>
 
@@ -104,115 +377,136 @@
          NAVBAR
          ========================================== -->
 
-    <nav class="navbar">
+    <nav
+        class="navbar"
+        id="mainNavbar">
 
-        <div class="navbar-container">
+
+        <div
+            class="navbar-container">
 
 
-            <!-- BRAND -->
+            <!-- ======================================
+                 COMPANY BRAND
+                 ====================================== -->
 
             <asp:HyperLink
                 ID="lnkBrand"
                 runat="server"
                 NavigateUrl="~/Home.aspx"
-                CssClass="navbar-brand">
-
-                ABC Company
-
+                CssClass="navbar-brand"
+                Text="ABC Company">
             </asp:HyperLink>
 
 
-            <!-- HOME -->
+            <!-- ======================================
+                 HOME
+                 ====================================== -->
 
             <asp:HyperLink
                 ID="lnkHome"
                 runat="server"
                 NavigateUrl="~/Home.aspx"
-                CssClass="nav-link">
-
-                Home
-
+                CssClass="nav-link"
+                Text="Home">
             </asp:HyperLink>
 
 
-            <!-- ABOUT -->
+            <!-- ======================================
+                 ABOUT US
+                 ====================================== -->
 
             <asp:HyperLink
                 ID="lnkAbout"
                 runat="server"
                 NavigateUrl="~/About.aspx"
-                CssClass="nav-link">
-
-                About Us
-
+                CssClass="nav-link"
+                Text="About Us">
             </asp:HyperLink>
 
 
-            <!-- CONTACT -->
+            <!-- ======================================
+                 LOGIN
 
-            <asp:HyperLink
-                ID="lnkContact"
-                runat="server"
-                NavigateUrl="~/Contact.aspx"
-                CssClass="nav-link">
-
-                Contact Us
-
-            </asp:HyperLink>
-
-
-            <!-- LOGIN -->
+                 Visible:
+                 NOT LOGGED IN
+                 ====================================== -->
 
             <asp:HyperLink
                 ID="lnkLogin"
                 runat="server"
                 NavigateUrl="~/Login.aspx"
-                CssClass="nav-link login-link">
-
-                Login
-
+                CssClass="nav-link login-link"
+                Visible="False"
+                Text="Login">
             </asp:HyperLink>
 
 
-            <!-- USER DASHBOARD -->
+            <!-- ======================================
+                 NORMAL USER DASHBOARD
+
+                 Visible:
+                 Role = User
+                 ====================================== -->
 
             <asp:HyperLink
                 ID="lnkUserDashboard"
                 runat="server"
                 NavigateUrl="~/UserDashboard.aspx"
                 CssClass="nav-link user-link"
-                Visible="False">
-
-                User Dashboard
-
+                Visible="False"
+                Text="User Dashboard">
             </asp:HyperLink>
 
 
-            <!-- ADMIN DASHBOARD -->
+            <!-- ======================================
+                 INVESTOR MY PROFILE
+
+                 Visible:
+                 Role = Investor
+                 ====================================== -->
+
+            <asp:HyperLink
+                ID="lnkMyProfile"
+                runat="server"
+                NavigateUrl="~/MyProfile.aspx"
+                CssClass="nav-link user-link"
+                Visible="False"
+                Text="My Profile">
+            </asp:HyperLink>
+
+
+            <!-- ======================================
+                 ADMIN DASHBOARD
+
+                 Visible:
+                 Role = Admin
+                 ====================================== -->
 
             <asp:HyperLink
                 ID="lnkAdminDashboard"
                 runat="server"
                 NavigateUrl="~/AdminDashboard.aspx"
                 CssClass="nav-link admin-link"
-                Visible="False">
-
-                Admin Dashboard
-
+                Visible="False"
+                Text="Admin Dashboard">
             </asp:HyperLink>
 
 
-            <!-- LOGOUT -->
+            <!-- ======================================
+                 LOGOUT
+
+                 Visible:
+                 LOGGED IN
+                 ====================================== -->
 
             <asp:HyperLink
                 ID="lnkLogout"
                 runat="server"
                 NavigateUrl="~/Logout.aspx"
                 CssClass="nav-link logout-link"
-                Visible="False">
-
-                Logout
-
+                Visible="False"
+                Text="Logout">
             </asp:HyperLink>
 
 
@@ -222,15 +516,19 @@
 
 
     <!-- ==========================================
-         PAGE CONTENT
+         MAIN PAGE CONTENT
          ========================================== -->
 
-    <div class="container">
+    <div
+        class="container"
+        id="mainContent">
+
 
         <asp:ContentPlaceHolder
             ID="MainContent"
             runat="server">
         </asp:ContentPlaceHolder>
+
 
     </div>
 

@@ -1,4 +1,4 @@
-﻿    <%@ Page Language="VB"
+﻿<%@ Page Language="VB"
     MasterPageFile="~/Site.master"
     AutoEventWireup="false"
     CodeFile="AdminDashboard.aspx.vb"
@@ -19,6 +19,7 @@
             padding: 35px;
             background: #f5f7fb;
             min-height: 80vh;
+            box-sizing: border-box;
         }
 
 
@@ -50,7 +51,7 @@
 
         .panel-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 25px;
             max-width: 1000px;
         }
@@ -62,16 +63,23 @@
 
         .dashboard-card {
             display: block;
+            width: 100%;
+            box-sizing: border-box;
+
             text-decoration: none;
-            background: white;
+
+            background: #ffffff;
+
             border-radius: 15px;
+
             padding: 30px;
+
             min-height: 190px;
+
+            border: 1px solid #e5e7eb;
 
             box-shadow:
                 0 5px 20px rgba(0, 0, 0, 0.08);
-
-            border: 1px solid #e5e7eb;
 
             transition:
                 transform 0.2s ease,
@@ -80,11 +88,14 @@
             cursor: pointer;
         }
 
+
         .dashboard-card:hover {
             transform: translateY(-5px);
 
             box-shadow:
                 0 12px 30px rgba(0, 0, 0, 0.13);
+
+            text-decoration: none;
         }
 
 
@@ -108,14 +119,18 @@
         }
 
 
-        /* USER CARD */
+        /* ==========================================
+           USER CARD
+           ========================================== */
 
         .user-card .card-icon {
             background: #dbeafe;
         }
 
 
-        /* INVESTOR CARD */
+        /* ==========================================
+           INVESTOR CARD
+           ========================================== */
 
         .investor-card .card-icon {
             background: #dcfce7;
@@ -123,7 +138,7 @@
 
 
         /* ==========================================
-           CARD TEXT
+           CARD TITLE
            ========================================== */
 
         .dashboard-card h2 {
@@ -135,6 +150,11 @@
 
             font-weight: 700;
         }
+
+
+        /* ==========================================
+           CARD DESCRIPTION
+           ========================================== */
 
         .dashboard-card p {
             margin: 0;
@@ -148,7 +168,7 @@
 
 
         /* ==========================================
-           ARROW
+           CARD ARROW
            ========================================== */
 
         .card-arrow {
@@ -160,6 +180,7 @@
 
             font-weight: 600;
         }
+
 
         .investor-card .card-arrow {
             color: #16a34a;
@@ -223,7 +244,7 @@
 
 
         <!-- ======================================
-             PANELS
+             PANEL GRID
              ====================================== -->
 
         <div class="panel-grid">
@@ -233,11 +254,11 @@
                  USER PANEL
                  ================================== -->
 
-            <asp:LinkButton
+            <asp:HyperLink
                 ID="lnkUserPanel"
                 runat="server"
                 CssClass="dashboard-card user-card"
-                PostBackUrl="~/UsersPanel.aspx">
+                NavigateUrl="~/UsersPanel.aspx">
 
                 <div class="card-icon">
                     👥
@@ -256,19 +277,18 @@
                     View All Users →
                 </div>
 
-            </asp:LinkButton>
-
+            </asp:HyperLink>
 
 
             <!-- ==================================
                  INVESTOR PANEL
                  ================================== -->
 
-            <asp:LinkButton
+            <asp:HyperLink
                 ID="lnkInvestorPanel"
                 runat="server"
                 CssClass="dashboard-card investor-card"
-                PostBackUrl="~/Investors.aspx">
+                NavigateUrl="~/Investors.aspx">
 
                 <div class="card-icon">
                     📈
@@ -287,7 +307,7 @@
                     View All Investors →
                 </div>
 
-            </asp:LinkButton>
+            </asp:HyperLink>
 
 
         </div>

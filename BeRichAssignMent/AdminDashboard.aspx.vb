@@ -3,24 +3,35 @@
 Partial Class AdminDashboard
     Inherits System.Web.UI.Page
 
-
     Protected Sub Page_Load(
-        sender As Object,
-        e As EventArgs
+        ByVal sender As Object,
+        ByVal e As EventArgs
     ) Handles Me.Load
+
+        ' ==========================================
+        ' CHECK USER LOGIN
+        ' ==========================================
 
         If Session("UserID") Is Nothing Then
 
-            Response.Redirect("Login.aspx")
+            Response.Redirect("~/Login.aspx")
             Return
 
         End If
 
 
-        If Session("UserRole") Is Nothing OrElse
-           Session("UserRole").ToString().ToLower() <> "admin" Then
+        ' ==========================================
+        ' CHECK ADMIN ROLE
+        ' ==========================================
 
-            Response.Redirect("Home.aspx")
+        If Session("Role") Is Nothing OrElse
+           Not String.Equals(
+               Session("Role").ToString().Trim(),
+               "admin",
+               StringComparison.OrdinalIgnoreCase
+           ) Then
+
+            Response.Redirect("~/Home.aspx")
             Return
 
         End If
@@ -33,11 +44,11 @@ Partial Class AdminDashboard
     ' ==========================================
 
     Protected Sub lnkUserPanel_Click(
-        sender As Object,
-        e As EventArgs
+        ByVal sender As Object,
+        ByVal e As EventArgs
     )
 
-        Response.Redirect("UsersPanel.aspx")
+        Response.Redirect("~/UsersPanel.aspx")
 
     End Sub
 
@@ -47,11 +58,11 @@ Partial Class AdminDashboard
     ' ==========================================
 
     Protected Sub lnkInvestorPanel_Click(
-        sender As Object,
-        e As EventArgs
+        ByVal sender As Object,
+        ByVal e As EventArgs
     )
 
-        Response.Redirect("Investors.aspx")
+        Response.Redirect("~/investors.aspx")
 
     End Sub
 
