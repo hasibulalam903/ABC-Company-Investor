@@ -9,833 +9,799 @@
     ContentPlaceHolderID="MainContent"
     runat="server">
 
-    <style type="text/css">
+<style type="text/css">
 
-        /* ==========================================
-           USERS PANEL
-           ========================================== */
+    .users-panel {
+        padding: 30px;
+        background: #f5f7fb;
+        min-height: 80vh;
+        box-sizing: border-box;
+    }
 
-        .users-panel {
-            padding: 35px;
-            background: #f5f7fb;
-            min-height: 80vh;
-            box-sizing: border-box;
-        }
+    .users-header {
+        margin-bottom: 25px;
+    }
 
+    .users-header h1 {
+        margin: 0;
+        color: #17365d;
+        font-size: 30px;
+    }
 
-        /* ==========================================
-           HEADER
-           ========================================== */
+    .users-header p {
+        margin-top: 6px;
+        color: #6b7280;
+    }
 
-        .users-header {
-            margin-bottom: 30px;
-        }
+    /* ================================
+       STATISTICS
+       ================================ */
 
-        .users-header h1 {
-            margin: 0;
-            color: #111827;
-            font-size: 32px;
-            font-weight: 700;
-        }
+    .statistics-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+        margin-bottom: 25px;
+    }
 
-        .users-header p {
-            margin-top: 8px;
-            color: #6b7280;
-            font-size: 15px;
-        }
+    .stat-card {
+        background: #ffffff;
+        padding: 22px;
+        border-radius: 10px;
+        box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    }
 
+    .stat-title {
+        color: #6b7280;
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
 
-        /* ==========================================
-           STATISTICS
-           ========================================== */
+    .stat-number {
+        color: #17365d;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    /* ================================
+       MESSAGE
+       ================================ */
+
+    .message {
+        display: block;
+        padding: 12px;
+        margin-bottom: 20px;
+        border-radius: 6px;
+    }
+
+    .success-message {
+        color: #0f5132;
+        background: #d1e7dd;
+        border: 1px solid #badbcc;
+    }
+
+    .error-message {
+        color: #842029;
+        background: #f8d7da;
+        border: 1px solid #f5c2c7;
+    }
+
+    /* ================================
+       SEARCH
+       ================================ */
+
+    .search-card {
+        background: #ffffff;
+        padding: 22px;
+        border-radius: 10px;
+        box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        margin-bottom: 20px;
+    }
+
+    .search-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr auto auto auto auto;
+        gap: 12px;
+        align-items: end;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group label {
+        font-size: 13px;
+        font-weight: bold;
+        color: #374151;
+        margin-bottom: 6px;
+    }
+
+    .form-control {
+        width: 100%;
+        height: 40px;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        padding: 8px 10px;
+        box-sizing: border-box;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: #2563eb;
+    }
+
+    /* ================================
+       TOP BUTTONS
+       ================================ */
+
+    .main-button {
+        height: 40px;
+        padding: 0 14px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+
+    .search-button {
+        background: #0d6efd;
+        color: white;
+    }
+
+    .reset-button {
+        background: #6c757d;
+        color: white;
+    }
+
+    .excel-all-button {
+        background: #198754;
+        color: white;
+    }
+
+    .pdf-all-button {
+        background: #dc3545;
+        color: white;
+    }
+
+    /* ================================
+       TABLE
+       ================================ */
+
+    .table-card {
+        background: #ffffff;
+        padding: 22px;
+        border-radius: 10px;
+        box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        overflow-x: auto;
+    }
+
+    .table-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .table-header h2 {
+        margin: 0;
+        color: #17365d;
+        font-size: 20px;
+    }
+
+    .user-count {
+        color: #6b7280;
+        font-size: 14px;
+    }
+
+    .users-grid {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .users-grid th {
+        background: #17365d;
+        color: white;
+        padding: 12px;
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    .users-grid td {
+        padding: 12px;
+        border-bottom: 1px solid #e5e7eb;
+        vertical-align: middle;
+    }
+
+    .users-grid tr:hover td {
+        background: #f8fafc;
+    }
+
+    /* ================================
+       STATUS
+       ================================ */
+
+    .active-status,
+    .inactive-status {
+        display: inline-block;
+        padding: 5px 9px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .active-status {
+        background: #d1e7dd;
+        color: #0f5132;
+    }
+
+    .inactive-status {
+        background: #f8d7da;
+        color: #842029;
+    }
+
+    /* ================================
+       ROW BUTTONS
+       ================================ */
+
+    .row-button {
+        border: none;
+        border-radius: 5px;
+        padding: 7px 10px;
+        margin: 2px;
+        color: white;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+
+    .activate-button {
+        background: #198754;
+    }
+
+    .deactivate-button {
+        background: #fd7e14;
+    }
+
+    .pdf-button {
+        background: #dc3545;
+    }
+
+    .excel-button {
+        background: #198754;
+    }
+
+    .delete-button {
+        background: #dc3545;
+    }
+
+    /* ================================
+       PAGINATION
+       ================================ */
+
+    .pagination-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .pagination-button {
+        border: none;
+        background: #17365d;
+        color: white;
+        padding: 9px 18px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .pagination-button:disabled {
+        background: #cccccc;
+        cursor: not-allowed;
+    }
+
+    .page-info {
+        font-weight: bold;
+        color: #374151;
+    }
+
+    /* ================================
+       RESPONSIVE
+       ================================ */
+
+    @media screen and (max-width: 1100px) {
 
         .statistics-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .stat-card {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 15px;
-            padding: 25px;
-
-            box-shadow:
-                0 5px 20px rgba(0, 0, 0, 0.06);
-        }
-
-        .stat-title {
-            color: #6b7280;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .stat-number {
-            color: #111827;
-            font-size: 30px;
-            font-weight: 700;
-        }
-
-
-        /* ==========================================
-           SEARCH CARD
-           ========================================== */
-
-        .search-card {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 25px;
-
-            box-shadow:
-                0 5px 20px rgba(0, 0, 0, 0.06);
-        }
-
-        .search-title {
-            margin: 0 0 20px 0;
-            color: #111827;
-            font-size: 20px;
-            font-weight: 700;
+            grid-template-columns: repeat(2, 1fr);
         }
 
         .search-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr auto auto;
-            gap: 15px;
-            align-items: end;
+            grid-template-columns: 1fr 1fr;
         }
 
+    }
 
-        /* ==========================================
-           FORM
-           ========================================== */
+    @media screen and (max-width: 600px) {
 
-        .form-group {
-            display: flex;
-            flex-direction: column;
+        .users-panel {
+            padding: 15px;
         }
 
-        .form-group label {
-            margin-bottom: 7px;
-            color: #374151;
-            font-size: 13px;
-            font-weight: 600;
+        .statistics-grid {
+            grid-template-columns: 1fr;
         }
 
-        .form-control {
-            width: 100%;
-            height: 42px;
-
-            padding: 8px 12px;
-
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-
-            background: #ffffff;
-
-            font-size: 14px;
-
-            box-sizing: border-box;
+        .search-grid {
+            grid-template-columns: 1fr;
         }
 
-        .form-control:focus {
-            outline: none;
+    }
 
-            border-color: #2563eb;
+</style>
 
-            box-shadow:
-                0 0 0 3px rgba(37, 99, 235, 0.10);
-        }
 
+<div class="users-panel">
 
-        /* ==========================================
-           BUTTONS
-           ========================================== */
 
-        .btn {
-            height: 42px;
+    <!-- ================================================
+         HEADER
+         ================================================ -->
 
-            padding: 0 20px;
+    <div class="users-header">
 
-            border: none;
-            border-radius: 8px;
+        <h1>
+            Users Management
+        </h1>
 
-            font-size: 14px;
-            font-weight: 600;
+        <p>
+            Manage registered users from the administration dashboard.
+        </p>
 
-            cursor: pointer;
-        }
+    </div>
 
-        .btn-search {
-            background: #2563eb;
-            color: #ffffff;
-        }
 
-        .btn-search:hover {
-            background: #1d4ed8;
-        }
+    <!-- ================================================
+         STATISTICS
+         ================================================ -->
 
-        .btn-reset {
-            background: #6b7280;
-            color: #ffffff;
-        }
+    <div class="statistics-grid">
 
-        .btn-reset:hover {
-            background: #4b5563;
-        }
 
+        <div class="stat-card">
 
-        /* ==========================================
-           MESSAGE
-           ========================================== */
+            <div class="stat-title">
+                Total Users
+            </div>
 
-        .message {
-            display: block;
-
-            padding: 12px 15px;
-
-            margin-bottom: 20px;
-
-            border-radius: 8px;
-
-            border: 1px solid transparent;
-
-            font-size: 14px;
-        }
-
-        .success-message {
-            background: #d1e7dd;
-            color: #146c43;
-            border-color: #badbcc;
-        }
-
-        .error-message {
-            background: #f8d7da;
-            color: #b02a37;
-            border-color: #f5c2c7;
-        }
-
-
-        /* ==========================================
-           USERS TABLE
-           ========================================== */
-
-        .users-table-card {
-            background: #ffffff;
-
-            border: 1px solid #e5e7eb;
-
-            border-radius: 15px;
-
-            padding: 25px;
-
-            box-shadow:
-                0 5px 20px rgba(0, 0, 0, 0.06);
-
-            overflow-x: auto;
-        }
-
-        .table-header {
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            margin-bottom: 20px;
-        }
-
-        .table-header h2 {
-            margin: 0;
-
-            color: #111827;
-
-            font-size: 20px;
-
-            font-weight: 700;
-        }
-
-        .user-count {
-            color: #6b7280;
-
-            font-size: 14px;
-
-            font-weight: 600;
-        }
-
-
-        /* ==========================================
-           GRIDVIEW
-           ========================================== */
-
-        .users-grid {
-            width: 100%;
-
-            border-collapse: collapse;
-
-            font-size: 14px;
-        }
-
-        .users-grid th {
-            background: #f3f4f6;
-
-            color: #374151;
-
-            padding: 14px 12px;
-
-            text-align: left;
-
-            font-weight: 700;
-
-            border-bottom: 1px solid #e5e7eb;
-
-            white-space: nowrap;
-        }
-
-        .users-grid td {
-            padding: 14px 12px;
-
-            color: #4b5563;
-
-            border-bottom: 1px solid #e5e7eb;
-
-            vertical-align: middle;
-        }
-
-        .users-grid tr:hover td {
-            background: #f9fafb;
-        }
-
-
-        /* ==========================================
-           STATUS
-           ========================================== */
-
-        .active-status {
-            display: inline-block;
-
-            padding: 5px 10px;
-
-            border-radius: 20px;
-
-            background: #dcfce7;
-
-            color: #166534;
-
-            font-size: 12px;
-
-            font-weight: 600;
-        }
-
-        .inactive-status {
-            display: inline-block;
-
-            padding: 5px 10px;
-
-            border-radius: 20px;
-
-            background: #fee2e2;
-
-            color: #991b1b;
-
-            font-size: 12px;
-
-            font-weight: 600;
-        }
-
-
-        /* ==========================================
-           STATUS BUTTON
-           ========================================== */
-
-        .status-button {
-            border: none;
-
-            border-radius: 7px;
-
-            padding: 8px 14px;
-
-            font-size: 12px;
-
-            font-weight: 600;
-
-            cursor: pointer;
-        }
-
-        .activate-button {
-            background: #dcfce7;
-
-            color: #166534;
-        }
-
-        .activate-button:hover {
-            background: #bbf7d0;
-        }
-
-        .deactivate-button {
-            background: #fee2e2;
-
-            color: #991b1b;
-        }
-
-        .deactivate-button:hover {
-            background: #fecaca;
-        }
-
-
-        /* ==========================================
-           PAGINATION
-           ========================================== */
-
-        .users-grid a {
-            color: #2563eb;
-
-            text-decoration: none;
-
-            font-weight: 600;
-        }
-
-        .users-grid a:hover {
-            text-decoration: underline;
-        }
-
-
-        /* ==========================================
-           RESPONSIVE
-           ========================================== */
-
-        @media (max-width: 1000px) {
-
-            .statistics-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .search-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-        }
-
-
-        @media (max-width: 700px) {
-
-            .users-panel {
-                padding: 20px;
-            }
-
-            .statistics-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .search-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .table-header {
-                flex-direction: column;
-
-                align-items: flex-start;
-
-                gap: 8px;
-            }
-
-        }
-
-    </style>
-
-
-    <!-- ==========================================
-         USERS PANEL
-         ========================================== -->
-
-    <div class="users-panel">
-
-
-        <!-- ======================================
-             HEADER
-             ====================================== -->
-
-        <div class="users-header">
-
-            <h1>
-                Users Panel
-            </h1>
-
-            <p>
-                View, search and manage all registered users.
-            </p>
+            <asp:Label
+                ID="lblTotalUsers"
+                runat="server"
+                CssClass="stat-number"
+                Text="0">
+            </asp:Label>
 
         </div>
 
 
-        <!-- ======================================
-             STATISTICS
-             ====================================== -->
+        <div class="stat-card">
 
-        <div class="statistics-grid">
-
-
-            <!-- TOTAL USERS -->
-
-            <div class="stat-card">
-
-                <div class="stat-title">
-                    Total Users
-                </div>
-
-                <asp:Label
-                    ID="lblTotalUsers"
-                    runat="server"
-                    CssClass="stat-number"
-                    Text="0">
-                </asp:Label>
-
+            <div class="stat-title">
+                Active Users
             </div>
 
-
-            <!-- ACTIVE USERS -->
-
-            <div class="stat-card">
-
-                <div class="stat-title">
-                    Active Users
-                </div>
-
-                <asp:Label
-                    ID="lblActiveUsers"
-                    runat="server"
-                    CssClass="stat-number"
-                    Text="0">
-                </asp:Label>
-
-            </div>
-
-
-            <!-- INACTIVE USERS -->
-
-            <div class="stat-card">
-
-                <div class="stat-title">
-                    Inactive Users
-                </div>
-
-                <asp:Label
-                    ID="lblInactiveUsers"
-                    runat="server"
-                    CssClass="stat-number"
-                    Text="0">
-                </asp:Label>
-
-            </div>
-
-
-            <!-- ADMIN USERS -->
-
-            <div class="stat-card">
-
-                <div class="stat-title">
-                    Admin Users
-                </div>
-
-                <asp:Label
-                    ID="lblAdminUsers"
-                    runat="server"
-                    CssClass="stat-number"
-                    Text="0">
-                </asp:Label>
-
-            </div>
-
+            <asp:Label
+                ID="lblActiveUsers"
+                runat="server"
+                CssClass="stat-number"
+                Text="0">
+            </asp:Label>
 
         </div>
 
 
-        <!-- ======================================
-             MESSAGE
-             ====================================== -->
+        <div class="stat-card">
 
-        <asp:Label
-            ID="lblMessage"
-            runat="server"
-            CssClass="message"
-            Visible="False">
-        </asp:Label>
+            <div class="stat-title">
+                Inactive Users
+            </div>
+
+            <asp:Label
+                ID="lblInactiveUsers"
+                runat="server"
+                CssClass="stat-number"
+                Text="0">
+            </asp:Label>
+
+        </div>
 
 
-        <!-- ======================================
-             SEARCH & FILTER
-             ====================================== -->
+        <div class="stat-card">
 
-        <div class="search-card">
+            <div class="stat-title">
+                Admin Users
+            </div>
 
-            <h2 class="search-title">
-                Search &amp; Filter Users
+            <asp:Label
+                ID="lblAdminUsers"
+                runat="server"
+                CssClass="stat-number"
+                Text="0">
+            </asp:Label>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ================================================
+         MESSAGE
+         ================================================ -->
+
+    <asp:Label
+        ID="lblMessage"
+        runat="server"
+        Visible="False"
+        CssClass="message">
+    </asp:Label>
+
+
+    <!-- ================================================
+         SEARCH / FILTER
+         ================================================ -->
+
+    <div class="search-card">
+
+        <div class="search-grid">
+
+
+            <!-- SEARCH -->
+
+            <div class="form-group">
+
+                <label>
+                    Search
+                </label>
+
+                <asp:TextBox
+                    ID="txtSearch"
+                    runat="server"
+                    CssClass="form-control"
+                    placeholder="Name, Email or Mobile">
+                </asp:TextBox>
+
+            </div>
+
+
+            <!-- ROLE -->
+
+            <div class="form-group">
+
+                <label>
+                    Role
+                </label>
+
+                <asp:DropDownList
+                    ID="ddlRole"
+                    runat="server"
+                    CssClass="form-control">
+
+                    <asp:ListItem
+                        Text="All Roles"
+                        Value="">
+                    </asp:ListItem>
+
+                    <asp:ListItem
+                        Text="Admin"
+                        Value="Admin">
+                    </asp:ListItem>
+
+                    <asp:ListItem
+                        Text="User"
+                        Value="User">
+                    </asp:ListItem>
+
+                    <asp:ListItem
+                        Text="Investor"
+                        Value="Investor">
+                    </asp:ListItem>
+
+                </asp:DropDownList>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="form-group">
+
+                <label>
+                    Status
+                </label>
+
+                <asp:DropDownList
+                    ID="ddlStatus"
+                    runat="server"
+                    CssClass="form-control">
+
+                    <asp:ListItem
+                        Text="All Status"
+                        Value="">
+                    </asp:ListItem>
+
+                    <asp:ListItem
+                        Text="Active"
+                        Value="Active">
+                    </asp:ListItem>
+
+                    <asp:ListItem
+                        Text="Inactive"
+                        Value="Inactive">
+                    </asp:ListItem>
+
+                </asp:DropDownList>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <asp:Button
+                ID="btnSearch"
+                runat="server"
+                Text="Search"
+                CssClass="main-button search-button">
+            </asp:Button>
+
+
+            <!-- RESET -->
+
+            <asp:Button
+                ID="btnReset"
+                runat="server"
+                Text="Reset"
+                CssClass="main-button reset-button">
+            </asp:Button>
+
+
+            <!-- ALL EXCEL -->
+
+            <asp:Button
+                ID="btnExportExcel"
+                runat="server"
+                Text="Export All Excel"
+                CssClass="main-button excel-all-button">
+            </asp:Button>
+
+
+            <!-- ALL PDF -->
+
+            <asp:Button
+                ID="btnDownloadAll"
+                runat="server"
+                Text="Download All PDF"
+                CssClass="main-button pdf-all-button">
+            </asp:Button>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================
+         USERS TABLE
+         ================================================ -->
+
+    <div class="table-card">
+
+
+        <div class="table-header">
+
+            <h2>
+                Registered Users
             </h2>
 
-
-            <div class="search-grid">
-
-
-                <!-- SEARCH -->
-
-                <div class="form-group">
-
-                    <label>
-                        Search
-                    </label>
-
-                    <asp:TextBox
-                        ID="txtSearch"
-                        runat="server"
-                        CssClass="form-control"
-                        placeholder="Search by name, email or mobile">
-                    </asp:TextBox>
-
-                </div>
-
-
-                <!-- ROLE -->
-
-                <div class="form-group">
-
-                    <label>
-                        Role
-                    </label>
-
-                    <asp:DropDownList
-                        ID="ddlRole"
-                        runat="server"
-                        CssClass="form-control">
-
-                        <asp:ListItem
-                            Text="All Roles"
-                            Value="">
-                        </asp:ListItem>
-
-                        <asp:ListItem
-                            Text="Admin"
-                            Value="Admin">
-                        </asp:ListItem>
-
-                        <asp:ListItem
-                            Text="User"
-                            Value="User">
-                        </asp:ListItem>
-
-                        <asp:ListItem
-                            Text="Investor"
-                            Value="Investor">
-                        </asp:ListItem>
-
-                    </asp:DropDownList>
-
-                </div>
-
-
-                <!-- STATUS -->
-
-                <div class="form-group">
-
-                    <label>
-                        Status
-                    </label>
-
-                    <asp:DropDownList
-                        ID="ddlStatus"
-                        runat="server"
-                        CssClass="form-control">
-
-                        <asp:ListItem
-                            Text="All Status"
-                            Value="">
-                        </asp:ListItem>
-
-                        <asp:ListItem
-                            Text="Active"
-                            Value="Active">
-                        </asp:ListItem>
-
-                        <asp:ListItem
-                            Text="Inactive"
-                            Value="Inactive">
-                        </asp:ListItem>
-
-                    </asp:DropDownList>
-
-                </div>
-
-
-                <!-- SEARCH BUTTON -->
-
-                <div class="form-group">
-
-                    <asp:Button
-                        ID="btnSearch"
-                        runat="server"
-                        Text="Search"
-                        CssClass="btn btn-search">
-                    </asp:Button>
-
-                </div>
-
-
-                <!-- RESET BUTTON -->
-
-                <div class="form-group">
-
-                    <asp:Button
-                        ID="btnReset"
-                        runat="server"
-                        Text="Reset"
-                        CssClass="btn btn-reset">
-                    </asp:Button>
-
-                </div>
-
-
-            </div>
+            <asp:Label
+                ID="lblUserCount"
+                runat="server"
+                CssClass="user-count"
+                Text="0 users">
+            </asp:Label>
 
         </div>
 
 
-        <!-- ======================================
-             USERS TABLE
-             ====================================== -->
-
-        <div class="users-table-card">
-
-
-            <div class="table-header">
-
-                <h2>
-                    Registered Users
-                </h2>
-
-                <asp:Label
-                    ID="lblUserCount"
-                    runat="server"
-                    CssClass="user-count"
-                    Text="0 users">
-                </asp:Label>
-
-            </div>
+        <asp:GridView
+            ID="gvUsers"
+            runat="server"
+            AutoGenerateColumns="False"
+            DataKeyNames="UserID"
+            CssClass="users-grid"
+            GridLines="None"
+            OnRowCommand="gvUsers_RowCommand">
 
 
-            <asp:GridView
-                ID="gvUsers"
-                runat="server"
-                AutoGenerateColumns="False"
-                CssClass="users-grid"
-                GridLines="None"
-                AllowPaging="True"
-                PageSize="10"
-                DataKeyNames="UserID"
-                OnPageIndexChanging="gvUsers_PageIndexChanging"
-                OnRowCommand="gvUsers_RowCommand">
-
-                <Columns>
+            <Columns>
 
 
-                 
 
-                    <asp:BoundField
-                        DataField="UserID"
-                        HeaderText="ID" />
+                <asp:BoundField
+                    DataField="UserID"
+                    HeaderText="ID">
+                </asp:BoundField>
+
+
+              
+
+                <asp:BoundField
+                    DataField="Name"
+                    HeaderText="Name">
+                </asp:BoundField>
+
+
+           
+
+                <asp:BoundField
+                    DataField="Email"
+                    HeaderText="Email">
+                </asp:BoundField>
+
+
+              
+
+                <asp:BoundField
+                    DataField="Mobile"
+                    HeaderText="Mobile">
+                </asp:BoundField>
+
+
+            
+
+                <asp:BoundField
+                    DataField="Role"
+                    HeaderText="Role">
+                </asp:BoundField>
+
+
+             
+
+                <asp:TemplateField
+                    HeaderText="Status">
+
+                    <ItemTemplate>
+
+                        <asp:Label
+                            ID="lblStatus"
+                            runat="server"
+                            Text='<%# Eval("Status") %>'
+                            CssClass='<%# GetStatusCss(Eval("Status")) %>'>
+                        </asp:Label>
+
+                    </ItemTemplate>
+
+                </asp:TemplateField>
+
+
+            
+
+                <asp:TemplateField
+                    HeaderText="Action">
+
+                    <ItemTemplate>
+
+
+
+                        <asp:Button
+                            ID="btnToggleStatus"
+                            runat="server"
+                            Text='<%# GetStatusButtonText(Eval("Status")) %>'
+                            CssClass='<%# "row-button " & GetStatusButtonCss(Eval("Status")) %>'
+                            CommandName="ToggleStatus"
+                            CommandArgument='<%# Eval("UserID") %>'>
+                        </asp:Button>
+
+
+
+                        <asp:Button
+                            ID="btnDownloadUser"
+                            runat="server"
+                            Text="Download PDF"
+                            CssClass="row-button pdf-button"
+                            CommandName="DownloadUser"
+                            CommandArgument='<%# Eval("UserID") %>'>
+                        </asp:Button>
+
+
+
+                        <asp:Button
+                            ID="btnExportUserExcel"
+                            runat="server"
+                            Text="Excel"
+                            CssClass="row-button excel-button"
+                            CommandName="ExportUserExcel"
+                            CommandArgument='<%# Eval("UserID") %>'>
+                        </asp:Button>
 
 
                     
 
-                    <asp:BoundField
-                        DataField="Name"
-                        HeaderText="Name" />
+                        <asp:Button
+                            ID="btnDeleteUser"
+                            runat="server"
+                            Text="Delete"
+                            CssClass="row-button delete-button"
+                            CommandName="DeleteUser"
+                            CommandArgument='<%# Eval("UserID") %>'
+                            OnClientClick="return confirm('Are you sure you want to delete this user?');">
+                        </asp:Button>
 
 
-                  
+                    </ItemTemplate>
 
-                    <asp:BoundField
-                        DataField="Email"
-                        HeaderText="Email" />
+                </asp:TemplateField>
 
 
-                   
-
-                    <asp:BoundField
-                        DataField="Mobile"
-                        HeaderText="Mobile" />
+            </Columns>
 
 
-                   
+            <EmptyDataTemplate>
 
-                    <asp:BoundField
-                        DataField="Role"
-                        HeaderText="Role" />
+                <div style="
+                    text-align:center;
+                    padding:30px;
+                    color:#777;
+                ">
 
+                    No users found.
 
-                 
+                </div>
 
-                    <asp:TemplateField
-                        HeaderText="Status">
-
-                        <ItemTemplate>
-
-                            <asp:Label
-                                ID="lblStatus"
-                                runat="server"
-                                Text='<%# Eval("Status") %>'
-                                CssClass='<%# GetStatusCss(Eval("Status")) %>'>
-                            </asp:Label>
-
-                        </ItemTemplate>
-
-                    </asp:TemplateField>
+            </EmptyDataTemplate>
 
 
-
-                    <asp:TemplateField
-                        HeaderText="Action">
-
-                        <ItemTemplate>
-
-                            <asp:Button
-                                ID="btnToggleStatus"
-                                runat="server"
-                                Text='<%# GetStatusButtonText(Eval("Status")) %>'
-                                CssClass='<%# "status-button " & GetStatusButtonCss(Eval("Status")) %>'
-                                CommandName="ToggleStatus"
-                                CommandArgument='<%# Eval("UserID") %>'>
-                            </asp:Button>
-
-                        </ItemTemplate>
-
-                    </asp:TemplateField>
+        </asp:GridView>
 
 
-                </Columns>
+   
+
+        <div class="pagination-container">
 
 
-                <EmptyDataTemplate>
+            <asp:Button
+                ID="btnPrevious"
+                runat="server"
+                Text="← Previous"
+                CssClass="pagination-button">
+            </asp:Button>
 
-                    <div style="
-                        padding: 30px;
-                        text-align: center;
-                        color: #6b7280;
-                    ">
 
-                        No users found.
+            <asp:Label
+                ID="lblPageInfo"
+                runat="server"
+                Text="Page 1 of 1"
+                CssClass="page-info">
+            </asp:Label>
 
-                    </div>
 
-                </EmptyDataTemplate>
-
-            </asp:GridView>
+            <asp:Button
+                ID="btnNext"
+                runat="server"
+                Text="Next →"
+                CssClass="pagination-button">
+            </asp:Button>
 
 
         </div>
 
 
     </div>
+
+
+</div>
 
 </asp:Content>

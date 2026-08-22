@@ -11,11 +11,15 @@
     runat="server">
 
     <style type="text/css">
-
         .about-page {
             padding: 50px 20px;
             background: #f5f7fa;
             min-height: 80vh;
+        }
+
+        .about-content {
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
         .about-hero {
@@ -29,19 +33,14 @@
 
         .about-hero h1 {
             font-size: 42px;
-            margin-bottom: 15px;
+            margin: 0 0 15px 0;
         }
 
         .about-hero p {
             max-width: 750px;
-            margin: auto;
+            margin: 0 auto;
             font-size: 17px;
             line-height: 1.7;
-        }
-
-        .about-content {
-            max-width: 1100px;
-            margin: auto;
         }
 
         .about-grid {
@@ -54,21 +53,22 @@
             background: white;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
         }
 
         .about-card h2 {
             color: #0f766e;
+            margin-top: 0;
             margin-bottom: 15px;
         }
 
         .about-card p {
             color: #64748b;
             line-height: 1.8;
+            margin-bottom: 0;
         }
 
         @media (max-width: 768px) {
-
             .about-grid {
                 grid-template-columns: 1fr;
             }
@@ -76,18 +76,14 @@
             .about-hero h1 {
                 font-size: 32px;
             }
-
         }
-
     </style>
-
 
     <div class="about-page">
 
         <div class="about-content">
 
             <div class="about-hero">
-
                 <h1>About Us</h1>
 
                 <p>
@@ -95,14 +91,11 @@
                     transparent and professional investment-related
                     services to our investors.
                 </p>
-
             </div>
-
 
             <div class="about-grid">
 
                 <div class="about-card">
-
                     <h2>Who We Are</h2>
 
                     <p>
@@ -110,12 +103,9 @@
                         investor management organization focused on
                         providing efficient and reliable services.
                     </p>
-
                 </div>
 
-
                 <div class="about-card">
-
                     <h2>Our Mission</h2>
 
                     <p>
@@ -123,12 +113,9 @@
                         efficient and technology-driven services
                         that help create a better investor experience.
                     </p>
-
                 </div>
 
-
                 <div class="about-card">
-
                     <h2>Our Vision</h2>
 
                     <p>
@@ -136,7 +123,6 @@
                         technology-driven investment service platform
                         in Bangladesh.
                     </p>
-
                 </div>
 
             </div>

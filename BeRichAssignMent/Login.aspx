@@ -1,310 +1,559 @@
 ﻿<%@ Page Language="VB"
-    MasterPageFile="~/Site.master"
     AutoEventWireup="false"
-    CodeFile="Login.aspx.vb"
+    CodeFile="login.aspx.vb"
     Inherits="login" %>
 
-<asp:Content
-    ID="Content1"
-    ContentPlaceHolderID="MainContent"
-    runat="server">
+<!DOCTYPE html>
 
-    <style type="text/css">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
-        .login-container {
-            width: 100%;
-            min-height: calc(100vh - 65px);
+<head runat="server">
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+    <title>Login</title>
 
-            padding: 40px 20px;
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1" />
+
+    <style>
+
+        * {
             box-sizing: border-box;
         }
 
+        body {
+            margin: 0;
+            padding: 0;
 
-        .login-box {
+            font-family: Arial, Helvetica, sans-serif;
+
+            background: #f4f7fb;
+        }
+
+        .login-page {
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 20px;
+        }
+
+        .login-card {
             width: 100%;
             max-width: 430px;
 
-            background-color: white;
+            background: #ffffff;
 
             padding: 35px;
 
-            border-radius: 10px;
+            border-radius: 14px;
 
             box-shadow:
-                0 3px 15px
-                rgba(0,0,0,0.12);
-
-            box-sizing: border-box;
+                0 8px 30px rgba(0, 0, 0, 0.10);
         }
 
-
         .login-title {
-            margin: 0 0 8px 0;
+            margin: 0;
 
             text-align: center;
 
             color: #17365d;
 
-            font-size: 28px;
+            font-size: 30px;
+
+            font-weight: 700;
         }
 
-
         .login-subtitle {
-            margin: 0 0 30px 0;
-
             text-align: center;
 
-            color: #777;
+            color: #6b7280;
+
+            margin-top: 8px;
+
+            margin-bottom: 30px;
 
             font-size: 14px;
         }
 
-
-        .login-group {
+        .form-group {
             margin-bottom: 20px;
         }
 
-
-        .login-label {
+        .form-label {
             display: block;
 
-            margin-bottom: 7px;
+            margin-bottom: 8px;
 
-            color: #333;
-
-            font-weight: bold;
-
-            font-size: 14px;
-        }
-
-
-        .login-input {
-            width: 100%;
-
-            height: 44px;
-
-            padding: 10px 12px;
-
-            border: 1px solid #bbb;
-
-            border-radius: 5px;
+            color: #374151;
 
             font-size: 14px;
 
-            background-color: white;
-
-            box-sizing: border-box;
+            font-weight: 600;
         }
 
-
-        .login-input:focus {
-            outline: none;
-
-            border-color: #0d6efd;
-
-            box-shadow:
-                0 0 4px
-                rgba(13,110,253,0.25);
-        }
-
-
-        .login-button {
+        .form-control {
             width: 100%;
 
-            height: 44px;
+            height: 45px;
 
-            border: none;
+            padding: 10px 13px;
 
-            border-radius: 5px;
+            border: 1px solid #d1d5db;
 
-            background-color: #0d6efd;
-
-            color: white;
+            border-radius: 8px;
 
             font-size: 15px;
 
-            font-weight: bold;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 3px rgba(37, 99, 235, 0.10);
+        }
+
+        .login-type-title {
+            display: block;
+
+            margin-bottom: 10px;
+
+            color: #374151;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+        .login-type {
+            display: flex;
+
+            gap: 25px;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+        }
+
+        .login-type label {
+            margin-left: 5px;
+
+            color: #374151;
+
+            font-size: 14px;
 
             cursor: pointer;
         }
 
+        .login-button {
+            width: 100%;
+
+            height: 46px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #2563eb;
+
+            color: #ffffff;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
 
         .login-button:hover {
-            background-color: #0b5ed7;
+            background: #1d4ed8;
         }
 
 
-        .login-message {
+        /* =========================================
+           REGISTER BUTTONS
+           ========================================= */
+
+        .register-section {
+            margin-top: 5px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 10px;
+        }
+
+        .register-button {
             display: block;
 
-            margin-top: 20px;
+            width: 100%;
 
-            padding: 12px;
+            padding: 11px 15px;
 
-            border-radius: 5px;
+            border-radius: 8px;
 
             text-align: center;
 
-            color: #842029;
+            text-decoration: none;
 
-            background-color: #f8d7da;
+            font-size: 14px;
 
-            border: 1px solid #f5c2c7;
+            font-weight: 600;
 
             box-sizing: border-box;
         }
 
+        .user-register {
+            background: #2563eb;
 
-        .register-link {
-            display: block;
+            color: #ffffff;
+        }
 
-            margin-top: 18px;
+        .user-register:hover {
+            background: #1d4ed8;
+        }
 
-            text-align: center;
+        .investor-register {
+            background: #198754;
 
-            color: #0d6efd;
+            color: #ffffff;
+        }
 
-            font-size: 14px;
-
-            font-weight: bold;
-
-            text-decoration: none;
+        .investor-register:hover {
+            background: #157347;
         }
 
 
-        .register-link:hover {
+        /* =========================================
+           FORGOT PASSWORD
+           ========================================= */
+
+        .forgot-link {
+            display: block;
+
+            text-align: center;
+
+            margin-top: 18px;
+
+            color: #2563eb;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+        .forgot-link:hover {
             text-decoration: underline;
         }
 
 
-        @media screen and (max-width: 600px) {
+        /* =========================================
+           MESSAGE
+           ========================================= */
 
-            .login-container {
-                padding: 25px 15px;
-            }
+        .message {
+            display: block;
+
+            padding: 12px 14px;
+
+            margin-bottom: 20px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+        }
+
+        .success-message {
+            color: #0f5132;
+
+            background: #d1e7dd;
+
+            border: 1px solid #badbcc;
+        }
+
+        .error-message {
+            color: #842029;
+
+            background: #f8d7da;
+
+            border: 1px solid #f5c2c7;
+        }
 
 
-            .login-box {
+        /* =========================================
+           NOTE
+           ========================================= */
+
+        .account-note {
+            margin-top: 20px;
+
+            padding: 12px;
+
+            background: #f8f9fa;
+
+            border-radius: 8px;
+
+            color: #6b7280;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+            text-align: center;
+        }
+
+
+        /* =========================================
+           MOBILE
+           ========================================= */
+
+        @media (max-width: 480px) {
+
+            .login-card {
                 padding: 25px 20px;
             }
 
-
             .login-title {
-                font-size: 24px;
+                font-size: 26px;
+            }
+
+            .login-type {
+                gap: 15px;
             }
 
         }
 
     </style>
 
-
-    <!-- LOGIN CONTAINER -->
-
-    <div class="login-container">
-
-        <div class="login-box">
+</head>
 
 
-            <!-- TITLE -->
+<body>
 
-            <h2 class="login-title">
+<form
+    id="form1"
+    runat="server">
+
+
+    <div class="login-page">
+
+
+        <div class="login-card">
+
+
+            <!-- =====================================
+                 TITLE
+                 ===================================== -->
+
+            <h1 class="login-title">
                 Login
-            </h2>
+            </h1>
 
 
             <p class="login-subtitle">
-                Login to Investor Management System
+                Select the account you want to access.
             </p>
 
 
-            <!-- EMAIL -->
+            <!-- =====================================
+                 MESSAGE
+                 ===================================== -->
 
-            <div class="login-group">
+            <asp:Label
+                ID="lblMessage"
+                runat="server"
+                Visible="False"
+                CssClass="message">
+            </asp:Label>
+
+
+            <!-- =====================================
+                 EMAIL
+                 ===================================== -->
+
+            <div class="form-group">
 
                 <asp:Label
                     ID="lblEmail"
                     runat="server"
                     Text="Email"
-                    CssClass="login-label">
+                    AssociatedControlID="txtEmail"
+                    CssClass="form-label">
                 </asp:Label>
 
 
                 <asp:TextBox
                     ID="txtEmail"
                     runat="server"
-                    CssClass="login-input"
-                    MaxLength="150"
+                    CssClass="form-control"
                     TextMode="Email"
-                    placeholder="Enter your email address">
+                    MaxLength="150"
+                    placeholder="Enter your email">
                 </asp:TextBox>
 
             </div>
 
 
-            <!-- PASSWORD -->
+            <!-- =====================================
+                 PASSWORD
+                 ===================================== -->
 
-            <div class="login-group">
+            <div class="form-group">
 
                 <asp:Label
                     ID="lblPassword"
                     runat="server"
                     Text="Password"
-                    CssClass="login-label">
+                    AssociatedControlID="txtPassword"
+                    CssClass="form-label">
                 </asp:Label>
 
 
                 <asp:TextBox
                     ID="txtPassword"
                     runat="server"
-                    CssClass="login-input"
+                    CssClass="form-control"
                     TextMode="Password"
-                    MaxLength="100"
+                    MaxLength="255"
                     placeholder="Enter your password">
                 </asp:TextBox>
 
             </div>
 
 
-            <!-- LOGIN BUTTON -->
+            <!-- =====================================
+                 LOGIN TYPE
+                 ===================================== -->
 
-            <asp:Button
-                ID="btnLogin"
-                runat="server"
-                Text="Login"
-                CssClass="login-button">
-            </asp:Button>
+            <div class="form-group">
 
-
-            <!-- MESSAGE -->
-
-            <asp:Label
-                ID="lblMessage"
-                runat="server"
-                Visible="False"
-                CssClass="login-message">
-            </asp:Label>
+                <span class="login-type-title">
+                    Login as:
+                </span>
 
 
-            <!-- REGISTER -->
+                <asp:RadioButtonList
+                    ID="rblLoginType"
+                    runat="server"
+                    RepeatDirection="Horizontal"
+                    RepeatLayout="Flow"
+                    CssClass="login-type">
+
+                    <asp:ListItem
+                        Text="Normal User"
+                        Value="User"
+                        Selected="True">
+                    </asp:ListItem>
+
+                    <asp:ListItem
+                        Text="Investor"
+                        Value="Investor">
+                    </asp:ListItem>
+
+                </asp:RadioButtonList>
+
+            </div>
+
+
+            <!-- =====================================
+                 LOGIN BUTTON
+                 ===================================== -->
+
+            <div class="form-group">
+
+                <asp:Button
+                    ID="btnLogin"
+                    runat="server"
+                    Text="Login"
+                    CssClass="login-button">
+                </asp:Button>
+
+            </div>
+
+
+            <!-- =====================================
+                 REGISTER BUTTONS
+                 DIRECTLY UNDER LOGIN
+                 ===================================== -->
+
+            <div class="register-section">
+
+
+                <!-- NORMAL USER REGISTER -->
+
+                <asp:HyperLink
+                    ID="lnkUserRegister"
+                    runat="server"
+                    NavigateUrl="~/Register.aspx"
+                    CssClass="register-button user-register">
+
+                    Register as Normal User
+
+                </asp:HyperLink>
+
+
+                <!-- INVESTOR REGISTER -->
+
+                <asp:HyperLink
+                    ID="lnkInvestorRegister"
+                    runat="server"
+                    NavigateUrl="~/InvestorRegister.aspx"
+                    CssClass="register-button investor-register">
+
+                    Register as Investor
+
+                </asp:HyperLink>
+
+
+            </div>
+
+
+            <!-- =====================================
+                 FORGOT PASSWORD
+                 ===================================== -->
 
             <asp:HyperLink
-                ID="lnkRegister"
+                ID="lnkForgotPassword"
                 runat="server"
-                NavigateUrl="~/Register.aspx"
-                CssClass="register-link"
-                Visible="True">
+                NavigateUrl="~/ForgotPassword.aspx"
+                CssClass="forgot-link">
 
-                Create your account / Register
+                Forgot Password?
 
             </asp:HyperLink>
+
+
+            <!-- =====================================
+                 NOTE
+                 ===================================== -->
+
+            <div class="account-note">
+
+                If you have both a Normal User account
+                and an Investor account, select the
+                account type you want to access before
+                logging in.
+
+            </div>
 
 
         </div>
 
     </div>
 
-</asp:Content>
+
+</form>
+
+</body>
+
+</html>

@@ -1,169 +1,213 @@
 ﻿<%@ Page Language="VB"
-    MasterPageFile="~/Site.master"
     AutoEventWireup="false"
     CodeFile="InvestorRegister.aspx.vb"
     Inherits="InvestorRegister" %>
 
+<!DOCTYPE html>
 
-<asp:Content
-    ID="Content1"
-    ContentPlaceHolderID="MainContent"
-    runat="server">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
+<head runat="server">
+
+    <title>Investor Registration</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1" />
 
     <style type="text/css">
 
-        /* ==========================================
-           REGISTER CONTAINER
-           ========================================== */
-
-        .register-container {
-            width: 100%;
-            min-height: calc(100vh - 65px);
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            padding: 40px 20px;
-
+        * {
             box-sizing: border-box;
         }
 
+        body {
+            margin: 0;
+            padding: 0;
 
-        /* ==========================================
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background-color: #f5f7fa;
+
+            color: #333333;
+        }
+
+
+        /* =========================================
+           PAGE CONTAINER
+           ========================================= */
+
+        .register-container {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 30px 15px;
+        }
+
+
+        /* =========================================
            REGISTER BOX
-           ========================================== */
+           ========================================= */
 
         .register-box {
-            width: 100%;
-            max-width: 650px;
 
-            background-color: white;
+            width: 100%;
+
+            max-width: 700px;
+
+            background-color: #ffffff;
 
             padding: 35px;
 
             border-radius: 10px;
 
             box-shadow:
-                0 3px 15px
-                rgba(0, 0, 0, 0.12);
-
-            box-sizing: border-box;
+                0 4px 20px
+                rgba(0,0,0,0.10);
         }
 
 
-        /* ==========================================
+        /* =========================================
            TITLE
-           ========================================== */
+           ========================================= */
 
         .register-title {
-            margin: 0 0 8px 0;
+
+            margin: 0;
 
             text-align: center;
 
             color: #17365d;
 
             font-size: 28px;
+
+            font-weight: 700;
         }
 
 
         .register-subtitle {
-            margin: 0 0 30px 0;
+
+            margin: 8px 0 30px 0;
 
             text-align: center;
 
-            color: #777;
+            color: #777777;
 
             font-size: 14px;
         }
 
 
-        /* ==========================================
-           FORM GRID
-           ========================================== */
+        /* =========================================
+           GRID
+           ========================================= */
 
-        .register-grid {
+        .form-grid {
+
             display: grid;
 
             grid-template-columns:
-                repeat(2, minmax(0, 1fr));
+                repeat(2, 1fr);
 
             gap: 20px;
         }
 
 
-        /* ==========================================
+        /* =========================================
            FORM GROUP
-           ========================================== */
+           ========================================= */
 
-        .register-group {
-            margin-bottom: 2px;
+        .form-group {
+
+            width: 100%;
         }
 
 
-        .register-label {
+        .form-label {
+
             display: block;
 
             margin-bottom: 7px;
 
-            color: #333;
+            font-size: 14px;
 
             font-weight: bold;
 
-            font-size: 14px;
+            color: #333333;
         }
 
 
-        /* ==========================================
+        /* =========================================
            INPUT
-           ========================================== */
+           ========================================= */
 
-        .register-input {
+        .form-input {
+
             width: 100%;
 
             height: 44px;
 
-            padding: 10px 12px;
+            padding:
+                10px 12px;
 
             border:
-                1px solid #bbb;
+                1px solid #bbbbbb;
 
             border-radius: 5px;
 
+            background-color: #ffffff;
+
             font-size: 14px;
 
-            background-color: white;
-
-            box-sizing: border-box;
+            outline: none;
         }
 
 
-        .register-input:focus {
-            outline: none;
+        .form-input:focus {
 
             border-color: #0d6efd;
 
             box-shadow:
                 0 0 4px
-                rgba(13, 110, 253, 0.25);
+                rgba(13,110,253,0.25);
         }
 
 
-        /* ==========================================
-           FULL WIDTH FIELD
-           ========================================== */
+        /* =========================================
+           SELECT
+           ========================================= */
+
+        select.form-input {
+
+            cursor: pointer;
+        }
+
+
+        /* =========================================
+           FULL WIDTH
+           ========================================= */
 
         .full-width {
-            grid-column: 1 / -1;
+
+            grid-column:
+                1 / -1;
         }
 
 
-        /* ==========================================
+        /* =========================================
            REGISTER BUTTON
-           ========================================== */
+           ========================================= */
 
         .register-button {
+
             width: 100%;
 
             height: 46px;
@@ -176,7 +220,7 @@
 
             background-color: #0d6efd;
 
-            color: white;
+            color: #ffffff;
 
             font-size: 15px;
 
@@ -187,15 +231,17 @@
 
 
         .register-button:hover {
+
             background-color: #0b5ed7;
         }
 
 
-        /* ==========================================
+        /* =========================================
            MESSAGE
-           ========================================== */
+           ========================================= */
 
         .register-message {
+
             display: block;
 
             width: 100%;
@@ -210,15 +256,16 @@
 
             font-size: 14px;
 
-            box-sizing: border-box;
+            line-height: 1.5;
         }
 
 
-        /* ==========================================
+        /* =========================================
            LOGIN LINK
-           ========================================== */
+           ========================================= */
 
         .login-link {
+
             display: block;
 
             margin-top: 18px;
@@ -236,16 +283,18 @@
 
 
         .login-link:hover {
+
             text-decoration: underline;
         }
 
 
-        /* ==========================================
-           NOTE
-           ========================================== */
+        /* =========================================
+           SECURITY NOTE
+           ========================================= */
 
-        .register-note {
-            margin-top: 18px;
+        .security-note {
+
+            margin-top: 20px;
 
             padding: 12px;
 
@@ -253,43 +302,42 @@
 
             border-radius: 5px;
 
-            color: #666;
+            text-align: center;
+
+            color: #666666;
 
             font-size: 12px;
 
             line-height: 1.5;
-
-            text-align: center;
         }
 
 
-        /* ==========================================
+        /* =========================================
            MOBILE
-           ========================================== */
+           ========================================= */
 
         @media screen and (max-width: 650px) {
 
-            .register-container {
-                padding: 25px 15px;
-            }
-
-
             .register-box {
+
                 padding: 25px 20px;
             }
 
 
-            .register-grid {
+            .form-grid {
+
                 grid-template-columns: 1fr;
             }
 
 
             .full-width {
+
                 grid-column: auto;
             }
 
 
             .register-title {
+
                 font-size: 24px;
             }
 
@@ -297,10 +345,19 @@
 
     </style>
 
+</head>
 
-    <!-- ==========================================
+
+<body>
+
+<form
+    id="form1"
+    runat="server">
+
+
+    <!-- =========================================
          REGISTER CONTAINER
-         ========================================== -->
+         ========================================= -->
 
     <div class="register-container">
 
@@ -308,45 +365,49 @@
         <div class="register-box">
 
 
-            <!-- ======================================
+            <!-- =====================================
                  TITLE
-                 ====================================== -->
+                 ===================================== -->
 
             <h2 class="register-title">
+
                 Investor Registration
+
             </h2>
 
 
             <p class="register-subtitle">
+
                 Create your Investor Management System account
+
             </p>
 
 
-            <!-- ======================================
-                 REGISTRATION FORM
-                 ====================================== -->
+            <!-- =====================================
+                 FORM
+                 ===================================== -->
 
-            <div class="register-grid">
+            <div class="form-grid">
 
 
-                <!-- ==================================
+                <!-- =================================
                      NAME
-                     ================================== -->
+                     ================================= -->
 
-                <div class="register-group">
+                <div class="form-group">
 
                     <asp:Label
                         ID="lblName"
                         runat="server"
                         Text="Investor Name"
-                        CssClass="register-label">
+                        CssClass="form-label">
                     </asp:Label>
 
 
                     <asp:TextBox
                         ID="txtName"
                         runat="server"
-                        CssClass="register-input"
+                        CssClass="form-input"
                         MaxLength="100"
                         placeholder="Enter your full name">
                     </asp:TextBox>
@@ -354,50 +415,50 @@
                 </div>
 
 
-                <!-- ==================================
+                <!-- =================================
                      EMAIL
-                     ================================== -->
+                     ================================= -->
 
-                <div class="register-group">
+                <div class="form-group">
 
                     <asp:Label
                         ID="lblEmail"
                         runat="server"
                         Text="Email"
-                        CssClass="register-label">
+                        CssClass="form-label">
                     </asp:Label>
 
 
                     <asp:TextBox
                         ID="txtEmail"
                         runat="server"
-                        CssClass="register-input"
-                        MaxLength="150"
+                        CssClass="form-input"
                         TextMode="Email"
-                        placeholder="Enter your email">
+                        MaxLength="150"
+                        placeholder="Enter your email address">
                     </asp:TextBox>
 
                 </div>
 
 
-                <!-- ==================================
+                <!-- =================================
                      MOBILE
-                     ================================== -->
+                     ================================= -->
 
-                <div class="register-group">
+                <div class="form-group">
 
                     <asp:Label
                         ID="lblPhone"
                         runat="server"
                         Text="Mobile Number"
-                        CssClass="register-label">
+                        CssClass="form-label">
                     </asp:Label>
 
 
                     <asp:TextBox
                         ID="txtPhone"
                         runat="server"
-                        CssClass="register-input"
+                        CssClass="form-input"
                         MaxLength="20"
                         placeholder="Enter your mobile number">
                     </asp:TextBox>
@@ -405,24 +466,24 @@
                 </div>
 
 
-                <!-- ==================================
+                <!-- =================================
                      DEPARTMENT
-                     ================================== -->
+                     ================================= -->
 
-                <div class="register-group">
+                <div class="form-group">
 
                     <asp:Label
                         ID="lblDepartment"
                         runat="server"
                         Text="Department"
-                        CssClass="register-label">
+                        CssClass="form-label">
                     </asp:Label>
 
 
                     <asp:DropDownList
                         ID="ddlDepartment"
                         runat="server"
-                        CssClass="register-input">
+                        CssClass="form-input">
 
                         <asp:ListItem
                             Text="-- Select Department --"
@@ -469,24 +530,24 @@
                 </div>
 
 
-                <!-- ==================================
+                <!-- =================================
                      DESIGNATION
-                     ================================== -->
+                     ================================= -->
 
-                <div class="register-group">
+                <div class="form-group">
 
                     <asp:Label
                         ID="lblDesignation"
                         runat="server"
                         Text="Designation"
-                        CssClass="register-label">
+                        CssClass="form-label">
                     </asp:Label>
 
 
                     <asp:DropDownList
                         ID="ddlDesignation"
                         runat="server"
-                        CssClass="register-input">
+                        CssClass="form-input">
 
                         <asp:ListItem
                             Text="-- Select Designation --"
@@ -533,24 +594,24 @@
                 </div>
 
 
-                <!-- ==================================
+                <!-- =================================
                      INVESTMENT AMOUNT
-                     ================================== -->
+                     ================================= -->
 
-                <div class="register-group">
+                <div class="form-group">
 
                     <asp:Label
                         ID="lblInvestmentAmount"
                         runat="server"
                         Text="Investment Amount"
-                        CssClass="register-label">
+                        CssClass="form-label">
                     </asp:Label>
 
 
                     <asp:TextBox
                         ID="txtInvestmentAmount"
                         runat="server"
-                        CssClass="register-input"
+                        CssClass="form-input"
                         MaxLength="20"
                         placeholder="Enter investment amount">
                     </asp:TextBox>
@@ -558,24 +619,24 @@
                 </div>
 
 
-                <!-- ==================================
+                <!-- =================================
                      PASSWORD
-                     ================================== -->
+                     ================================= -->
 
-                <div class="register-group">
+                <div class="form-group">
 
                     <asp:Label
                         ID="lblPassword"
                         runat="server"
                         Text="Password"
-                        CssClass="register-label">
+                        CssClass="form-label">
                     </asp:Label>
 
 
                     <asp:TextBox
                         ID="txtPassword"
                         runat="server"
-                        CssClass="register-input"
+                        CssClass="form-input"
                         TextMode="Password"
                         MaxLength="100"
                         placeholder="Enter password">
@@ -584,24 +645,24 @@
                 </div>
 
 
-                <!-- ==================================
+                <!-- =================================
                      CONFIRM PASSWORD
-                     ================================== -->
+                     ================================= -->
 
-                <div class="register-group">
+                <div class="form-group">
 
                     <asp:Label
                         ID="lblConfirmPassword"
                         runat="server"
                         Text="Confirm Password"
-                        CssClass="register-label">
+                        CssClass="form-label">
                     </asp:Label>
 
 
                     <asp:TextBox
                         ID="txtConfirmPassword"
                         runat="server"
-                        CssClass="register-input"
+                        CssClass="form-input"
                         TextMode="Password"
                         MaxLength="100"
                         placeholder="Confirm password">
@@ -613,9 +674,9 @@
             </div>
 
 
-            <!-- ======================================
+            <!-- =====================================
                  REGISTER BUTTON
-                 ====================================== -->
+                 ===================================== -->
 
             <asp:Button
                 ID="btnRegister"
@@ -625,9 +686,9 @@
             </asp:Button>
 
 
-            <!-- ======================================
+            <!-- =====================================
                  MESSAGE
-                 ====================================== -->
+                 ===================================== -->
 
             <asp:Label
                 ID="lblMessage"
@@ -637,9 +698,9 @@
             </asp:Label>
 
 
-            <!-- ======================================
-                 LOGIN
-                 ====================================== -->
+            <!-- =====================================
+                 LOGIN LINK
+                 ===================================== -->
 
             <asp:HyperLink
                 ID="lnkLogin"
@@ -650,15 +711,14 @@
             </asp:HyperLink>
 
 
-            <!-- ======================================
-                 NOTE
-                 ====================================== -->
+            <!-- =====================================
+                 SECURITY NOTE
+                 ===================================== -->
 
-            <div class="register-note">
+            <div class="security-note">
 
-                Your password is stored securely as a
-                password hash. Never share your password
-                with anyone.
+                Your password is securely protected.
+                Please do not share your password with anyone.
 
             </div>
 
@@ -667,4 +727,9 @@
 
     </div>
 
-</asp:Content>
+
+</form>
+
+</body>
+
+</html>
