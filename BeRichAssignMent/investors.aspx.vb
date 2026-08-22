@@ -1215,6 +1215,13 @@ Partial Class Investors
                     )
 
 
+                Case "ExportInvestorCsv"
+
+                    ExportSingleInvestorCsv(
+                        investorID
+                    )
+
+
             End Select
 
 
@@ -2920,5 +2927,257 @@ Partial Class Investors
         lblMessage.Visible = False
 
     End Sub
+
+
+
+    ' =========================================================
+    ' EXPORT ALL CSV
+    ' =========================================================
+
+    Protected Sub btnExportAllCsv_Click(
+        ByVal sender As Object,
+        ByVal e As EventArgs
+    ) Handles btnExportAllCsv.Click
+
+        Try
+
+            Dim dt As DataTable =
+                GetAllFilteredInvestors()
+
+            If dt.Rows.Count = 0 Then
+
+                ShowError(
+                    "No investors found."
+                )
+
+                Return
+
+            End If
+
+            ExportDataTableToCsv(
+                dt,
+                "Investors_" &
+                DateTime.Now.ToString("yyyyMMdd_HHmmss") &
+                ".csv"
+            )
+
+        Catch ex As Exception
+
+            ShowError(
+                "CSV export error: " &
+                ex.Message
+            )
+
+        End Try
+
+    End Sub
+
+
+    ' =========================================================
+    ' SINGLE INVESTOR CSV
+    ' =========================================================
+
+    Private Sub ExportSingleInvestorCsv(
+        ByVal investorID As Integer
+    )
+
+        Try
+
+            Dim row As DataRow =
+                GetInvestor(investorID)
+
+            If row Is Nothing Then
+
+                ShowError(
+                    "Investor not found."
+                )
+
+                Return
+
+            End If
+
+            Dim dt As New DataTable()
+
+            dt.Columns.Add("InvestorID")
+            dt.Columns.Add("Name")
+            dt.Columns.Add("Email")
+            dt.Columns.Add("Mobile")
+            dt.Columns.Add("Department")
+            dt.Columns.Add("Designation")
+            dt.Columns.Add("InvestmentAmount")
+
+            Dim newRow As DataRow =
+                dt.NewRow()
+
+            newRow("InvestorID") =
+                row("InvestorID").ToString()
+
+            newRow("Name") =
+                row("Name").ToString()
+
+            newRow("Email") =
+                row("Email").ToString()
+
+            newRow("Mobile") =
+                row("Mobile").ToString()
+
+            newRow("Department") =
+                row("Department").ToString()
+
+            newRow("Designation") =
+                row("Designation").ToString()
+
+            If IsDBNull(row("InvestmentAmount")) Then
+
+                newRow("InvestmentAmount") = ""
+
+            Else
+
+                newRow("InvestmentAmount") =
+                    Convert.ToDecimal(
+                        row("InvestmentAmount")
+                    ).ToString("N2")
+
+            End If
+
+            dt.Rows.Add(newRow)
+
+            ExportDataTableToCsv(
+                dt,
+                "Investor_" &
+                investorID.ToString() &
+                ".csv"
+            )
+
+        Catch ex As Exception
+
+            ShowError(
+                "CSV export error: " &
+                ex.Message
+            )
+
+        End Try
+
+    End Sub
+
+
+    ' =========================================================
+    ' CSV EXPORT
+    ' =========================================================
+
+    Private Sub ExportDataTableToCsv(
+        ByVal dt As DataTable,
+        ByVal fileName As String
+    )
+
+        Dim sb As New StringBuilder()
+
+        ' UTF-8 BOM for Excel compatibility.
+        sb.Append(ChrW(&HFEFF))
+
+        ' =====================================================
+        ' HEADER
+        ' =====================================================
+
+        For columnIndex As Integer =
+            0 To dt.Columns.Count - 1
+
+            If columnIndex > 0 Then
+                sb.Append(",")
+            End If
+
+            sb.Append(
+                EscapeCsv(
+                    dt.Columns(columnIndex).ColumnName
+                )
+            )
+
+        Next
+
+        sb.AppendLine()
+
+        ' =====================================================
+        ' DATA
+        ' =====================================================
+
+        For Each row As DataRow In dt.Rows
+
+            For columnIndex As Integer =
+                0 To dt.Columns.Count - 1
+
+                If columnIndex > 0 Then
+                    sb.Append(",")
+                End If
+
+                Dim value As String = ""
+
+                If Not IsDBNull(row(columnIndex)) Then
+
+                    value =
+                        Convert.ToString(
+                            row(columnIndex)
+                        )
+
+                End If
+
+                sb.Append(
+                    EscapeCsv(value)
+                )
+
+            Next
+
+            sb.AppendLine()
+
+        Next
+
+        ' =====================================================
+        ' RESPONSE
+        ' =====================================================
+
+        Response.Clear()
+        Response.ClearHeaders()
+        Response.ClearContent()
+        Response.Buffer = True
+
+        Response.ContentType = "text/csv"
+        Response.ContentEncoding = Encoding.UTF8
+        Response.Charset = "utf-8"
+
+        Response.AddHeader(
+            "Content-Disposition",
+            "attachment;filename=" & fileName
+        )
+
+        Response.Write(sb.ToString())
+        Response.Flush()
+
+        HttpContext.Current.
+            ApplicationInstance.
+            CompleteRequest()
+
+    End Sub
+
+
+    ' =========================================================
+    ' ESCAPE CSV VALUE
+    ' =========================================================
+
+    Private Function EscapeCsv(
+        ByVal value As String
+    ) As String
+
+        If value Is Nothing Then
+            Return """"""
+        End If
+
+        value =
+            value.Replace(
+                """",
+                """"""
+            )
+
+        Return """" & value & """"
+
+    End Function
 
 End Class

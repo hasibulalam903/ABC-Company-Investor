@@ -23,11 +23,42 @@ Partial Public Class ForgotPassword
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
+    '''txtEmail control.
+    '''</summary>
+    Protected WithEvents txtEmail As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblNewPassword control.
+    '''</summary>
+    Protected WithEvents lblNewPassword As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtNewPassword control.
+    '''</summary>
+    Protected WithEvents txtNewPassword As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblConfirmPassword control.
+    '''</summary>
+    Protected WithEvents lblConfirmPassword As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtConfirmPassword control.
+    '''</summary>
+    Protected WithEvents txtConfirmPassword As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''btnResetPassword control.
+    '''</summary>
+    Protected WithEvents btnResetPassword As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''lblMessage control.
     '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
     Protected WithEvents lblMessage As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lnkLogin control.
+    '''</summary>
+    Protected WithEvents lnkLogin As Global.System.Web.UI.WebControls.HyperLink
 End Class

@@ -6,7 +6,6 @@ Imports System.Security.Cryptography
 Imports System.Text
 Imports System.Text.RegularExpressions
 
-
 Partial Class ForgotPassword
 
     Inherits System.Web.UI.Page
@@ -19,7 +18,7 @@ Partial Class ForgotPassword
     Protected Sub Page_Load(
         ByVal sender As Object,
         ByVal e As EventArgs
-    ) Handles Me.Load
+    )
 
         If Not IsPostBack Then
 
@@ -39,12 +38,16 @@ Partial Class ForgotPassword
     Protected Sub btnResetPassword_Click(
         ByVal sender As Object,
         ByVal e As EventArgs
-    ) Handles btnResetPassword.Click
+    )
 
         Dim email As String
         Dim newPassword As String
         Dim confirmPassword As String
 
+
+        ' =====================================================
+        ' GET FORM VALUES
+        ' =====================================================
 
         email = txtEmail.Text.Trim()
 
@@ -264,9 +267,9 @@ Partial Class ForgotPassword
         End Try
 
 
-        ' =====================================================
+        ' =========================================================
         ' HASH PASSWORD
-        ' =====================================================
+        ' =========================================================
 
         Dim passwordHash As String
 
@@ -276,9 +279,9 @@ Partial Class ForgotPassword
             )
 
 
-        ' =====================================================
+        ' =========================================================
         ' DATABASE
-        ' =====================================================
+        ' =========================================================
 
         Try
 
@@ -526,6 +529,7 @@ Partial Class ForgotPassword
         Using sha256 As SHA256 =
             SHA256.Create()
 
+
             Dim bytes As Byte()
 
             bytes =
@@ -555,6 +559,7 @@ Partial Class ForgotPassword
 
 
             Return builder.ToString()
+
 
         End Using
 

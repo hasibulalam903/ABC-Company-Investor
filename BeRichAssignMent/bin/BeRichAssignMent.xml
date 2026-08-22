@@ -37,9 +37,9 @@ BeRichAssignMent
  Returns the Asp log object.
  </summary>
 </member>
-<member name="F:BeRichAssignMent.ForgotPassword._lblEmail">
+<member name="F:BeRichAssignMent.ForgotPassword._form1">
 <summary>
-lblEmail control.
+form1 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -50,73 +50,41 @@ To modify move field declaration from designer file to code-behind file.
 <summary>
 txtEmail control.
 </summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
 </member>
 <member name="F:BeRichAssignMent.ForgotPassword._lblNewPassword">
 <summary>
 lblNewPassword control.
 </summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
 </member>
 <member name="F:BeRichAssignMent.ForgotPassword._txtNewPassword">
 <summary>
 txtNewPassword control.
 </summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
 </member>
 <member name="F:BeRichAssignMent.ForgotPassword._lblConfirmPassword">
 <summary>
 lblConfirmPassword control.
 </summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
 </member>
 <member name="F:BeRichAssignMent.ForgotPassword._txtConfirmPassword">
 <summary>
 txtConfirmPassword control.
 </summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
 </member>
 <member name="F:BeRichAssignMent.ForgotPassword._btnResetPassword">
 <summary>
 btnResetPassword control.
 </summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
 </member>
 <member name="F:BeRichAssignMent.ForgotPassword._lblMessage">
 <summary>
 lblMessage control.
 </summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
 </member>
 <member name="F:BeRichAssignMent.ForgotPassword._lnkLogin">
 <summary>
 lnkLogin control.
 </summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
 </member>
 <member name="F:BeRichAssignMent.InvestorRegister._lblName">
 <summary>

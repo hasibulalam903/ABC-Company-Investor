@@ -1004,6 +1004,13 @@
             CssClass="btn btn-pdf"
             CausesValidation="False" />
 
+        <asp:Button
+    ID="btnExportAllCsv"
+    runat="server"
+    Text="Export All CSV"
+    CssClass="btn btn-excel"
+    CausesValidation="False" />
+
     </div>
 
 
@@ -1097,6 +1104,16 @@
                             CssClass="action-button row-pdf"
                             CausesValidation="False">
                         </asp:LinkButton>
+                        <asp:LinkButton
+    ID="btnRowCsv"
+    runat="server"
+    Text="CSV"
+    CommandName="ExportInvestorCsv"
+    CommandArgument='<%# Eval("InvestorID") %>'
+    CssClass="action-button row-excel"
+    CausesValidation="False">
+</asp:LinkButton>
+
 
 
 
